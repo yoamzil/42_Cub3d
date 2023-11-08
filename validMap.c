@@ -6,7 +6,7 @@
 /*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:36:41 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/11/08 11:59:45 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/11/08 22:09:46 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ int	is_surrounded_by_walls(char **map)
 {
 	int	i;
 	int	j;
-	int	width;
 	int	height;
+	int	width;
 
 	height = 0;
 	while (map[height])
@@ -42,18 +42,18 @@ int	is_surrounded_by_walls(char **map)
 	width = ft_strlen(map[0]);
 	if (width < 2 || height < 2)
 		return (0);
-	i = -1;
-	while (++i < width)
+	j = -1;
+	while (++j < height)
 	{
-		if (map[0][i] != '1' || map[height - 1][i] != '1')
-			return (0);
-	}
-	j = 1;
-	while (j < height - 1)
-	{
-		if (map[j][0] != '1' || map[j][width - 1] != '1')
-			return (0);
-		j++;
+		i = -1;
+		while (++i < width)
+		{
+			if (map[j][i] == '0')
+			{
+				if ((i > 0 && map[j][i - 1] == ' ') || (i == 0) || (i < width - 1 && map[j][i + 1] == ' ') || (j > 0 && map[j - 1][i] == ' ') || (j == 0) || (j < height - 1 && map[j + 1][i] == ' '))
+					return (0);
+			}
+		}
 	}
 	return (1);
 }
@@ -114,7 +114,7 @@ int	has_valid_pec(t_game *game)
 
 int	is_valid_map(t_game *game)
 {
-	if (is_surrounded_by_walls(game->map) && is_valid_map_chars(game->map))
+	if (is_surrounded_by_walls(game->map))
 		return (1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:11:09 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/11/08 12:05:01 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/11/08 21:42:11 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,5 @@ typedef struct s_game
 
 int	is_valid_map(t_game *game);
 int	is_valid_arg(char *arg);
-
 
 #endif

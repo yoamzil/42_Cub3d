@@ -6,38 +6,11 @@
 /*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:11:00 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/11/08 12:17:08 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/11/08 21:42:49 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
-
-int	first_empty_line(char *map)
-{
-	int	i;
-
-	i = 0;
-	if (map[i] == '\n')
-	{
-		printf("Error\nEmpty Line Found");
-		exit(1);
-	}
-	return (0);
-}
-
-int	has_double_newline(char *map)
-{
-	while (*map)
-	{
-		if (*map == '\n' && *(map + 1) == '\n')
-		{
-			printf("Error\nDouble New Line Found\n");
-			exit(1);
-		}
-		map++;
-	}
-	return (0);
-}
 
 char	**read_map(char *filepath)
 {
@@ -60,8 +33,6 @@ char	**read_map(char *filepath)
 		free(temp_holder);
 		line = get_next_line(fd);
 	}
-	first_empty_line(accumulator);
-	has_double_newline(accumulator);
 	map_array = ft_split(accumulator, '\n');
 	free(accumulator);
 	close(fd);
@@ -77,7 +48,7 @@ int	main(int ac, char **av)
 		game.map = read_map(av[1]);
 		if (is_valid_map(&game) && is_valid_arg(av[1]))
 		{
-			printf("Valid Map\n");	
+			printf("Valid Map\n");
 		}
 		else
 		{
