@@ -6,7 +6,7 @@
 /*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:36:41 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/11/08 22:09:46 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/11/08 22:34:59 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,32 @@ int	is_valid_arg(char *arg)
 	return (0);
 }
 
-int	is_surrounded_by_walls(char **map)
+int walls_support(char **map, int height, int width)
 {
-	int	i;
-	int	j;
+    int i;
+    int j;
+
+    j = -1;
+    while (++j < height)
+	{
+		i = -1;
+		while (++i < width)
+		{
+			if (map[j][i] == '0')
+			{
+				if ((i > 0 && map[j][i - 1] == ' ') || (i == 0)
+                    || (i < width - 1 && map[j][i + 1] == ' ')
+                    || (j > 0 && map[j - 1][i] == ' ') || (j == 0)
+                    || (j < height - 1 && map[j + 1][i] == ' '))
+					return (0);
+			}
+		}
+	}
+    return (1);
+}
+
+int is_surrounded_by_walls(char **map)
+{
 	int	height;
 	int	width;
 
@@ -42,20 +64,9 @@ int	is_surrounded_by_walls(char **map)
 	width = ft_strlen(map[0]);
 	if (width < 2 || height < 2)
 		return (0);
-	j = -1;
-	while (++j < height)
-	{
-		i = -1;
-		while (++i < width)
-		{
-			if (map[j][i] == '0')
-			{
-				if ((i > 0 && map[j][i - 1] == ' ') || (i == 0) || (i < width - 1 && map[j][i + 1] == ' ') || (j > 0 && map[j - 1][i] == ' ') || (j == 0) || (j < height - 1 && map[j + 1][i] == ' '))
-					return (0);
-			}
-		}
-	}
-	return (1);
+    if (walls_support(map, height, width))
+        return (1);
+    return (0);
 }
 
 int	is_valid_map_chars(char **map)
