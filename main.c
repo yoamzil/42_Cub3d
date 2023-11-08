@@ -6,11 +6,18 @@
 /*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:11:00 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/11/08 21:42:49 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/11/08 22:53:46 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
+
+int	is_valid_map(t_game *game)
+{
+	if (is_surrounded_by_walls(game->map))
+		return (1);
+	return (0);
+}
 
 char	**read_map(char *filepath)
 {
