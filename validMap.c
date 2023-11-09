@@ -6,7 +6,7 @@
 /*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:36:41 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/11/09 10:49:22 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/11/09 11:11:44 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,15 +109,16 @@ int	has_valid_pec(t_game *game)
 		{
 			if (game->map[i][j] == 'N')
 				game->start_position_count++;
-			else if (game->map[i][j] == 'S')
+			if (game->map[i][j] == 'S')
 				game->start_position_count++;
-			else if (game->map[i][j] == 'E')
+			if (game->map[i][j] == 'E')
 				game->start_position_count++;
-			else if (game->map[i][j] == 'W')
+			if (game->map[i][j] == 'W')
 				game->start_position_count++;
 			j++;
 		}
 	}
+    // printf ("====>%d\n", game->start_position_count);
 	if (game->start_position_count != 1)
 		return (0);
 	return (1);
