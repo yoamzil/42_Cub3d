@@ -6,7 +6,7 @@
 /*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:11:00 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/11/08 22:53:46 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/11/09 10:53:52 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	is_valid_map(t_game *game)
 {
-	if (is_surrounded_by_walls(game->map))
+	if (is_surrounded_by_walls(game->map) && is_valid_map_chars(game->map) && has_valid_pec(game))
 		return (1);
 	return (0);
 }
