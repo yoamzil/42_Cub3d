@@ -6,19 +6,11 @@
 /*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:11:00 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/11/09 15:56:31 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/11/09 16:22:30 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
-
-int	is_valid_map(t_game *game)
-{
-	if (is_surrounded_by_walls(game->map)
-		&& is_valid_map_chars(game->map) && has_valid_pec(game))
-		return (1);
-	return (0);
-}
 
 char	**read_map(char *filepath)
 {
@@ -41,6 +33,7 @@ char	**read_map(char *filepath)
 		free(temp_holder);
 		line = get_next_line(fd);
 	}
+	has_double_newline(accumulator);
 	map_array = ft_split(accumulator, '\n');
 	free(accumulator);
 	close(fd);
