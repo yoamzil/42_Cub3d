@@ -6,7 +6,7 @@
 /*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:11:00 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/11/09 12:27:00 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/11/09 15:56:31 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	main(int ac, char **av)
 	if (ac == 2)
 	{
 		game.map = read_map(av[1]);
-		if (is_valid_map(&game) && is_valid_arg(av[1]))
+		if (game.map && is_valid_map(&game) && is_valid_arg(av[1]))
 		{
 			printf("Valid Map\n");
 		}
