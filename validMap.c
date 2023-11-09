@@ -6,7 +6,7 @@
 /*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:36:41 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/11/09 21:42:37 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/11/09 21:45:20 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	walls_support(char **map, int height, int width)
 {
 	int	i;
 	int	j;
-	
+
 	j = 5;
 	while (++j < height)
 	{
@@ -47,11 +47,11 @@ int	walls_support(char **map, int height, int width)
 					|| (map[j][i + 1] && map[j][i + 1] == ' ')
 					|| (j > 0 && map[j - 1][i] == ' ') || (j == 0)
 					|| (map[j + 1] && map[j + 1][i] == ' '))
-						return (0);
+					return (0);
 				else if (!map[j + 1] || !map[j][i + 1]
 					|| (map[j + 1] && ft_strlen(map[j + 1]) < (size_t)i + 1) 
 					|| (j > 0 && ft_strlen(map[j - 1]) < (size_t)i + 1))
-						return (0);
+					return (0);
 			}
 		}
 	}

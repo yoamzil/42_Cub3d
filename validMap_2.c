@@ -6,7 +6,7 @@
 /*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:06:03 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/11/09 21:29:00 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/11/09 21:45:52 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,14 @@ int	is_valid_map(t_game *game, int i)
 int	has_double_newline(char *map)
 {
 	int	i;
-	int count;
+	int	count;
 
 	count = 0;
 	i = 0;
 	while (map[i])
 	{
-		if (map[i] == '1' && map[i + 1] == '1' && map[i + 2] == '1' && map[i + 3] == '1')
+		if (map[i] == '1' && map[i + 1] == '1'
+			&& map[i + 2] == '1' && map[i + 3] == '1')
 			count = 1;
 		if (count == 1 && map[i] == '\n' && map[i + 1] == '\n')
 		{
