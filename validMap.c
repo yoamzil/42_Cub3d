@@ -6,7 +6,7 @@
 /*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:36:41 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/11/09 11:11:44 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/11/09 12:24:30 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,19 @@ int	walls_support(char **map, int height, int width)
 	while (++j < height)
 	{
 		i = -1;
-		while (++i < width)
+		width = ft_strlen(map[j]);
+		while (map[j][++i])
 		{
 			if (map[j][i] == '0')
 			{
 				if ((i > 0 && map[j][i - 1] == ' ') || (i == 0)
-					|| (i < width - 1 && map[j][i + 1] == ' ')
+					|| (map[j][i + 1] && map[j][i + 1] == ' ')
 					|| (j > 0 && map[j - 1][i] == ' ') || (j == 0)
-					|| (j < height - 1 && map[j + 1][i] == ' '))
+					|| (map[j + 1] && map[j + 1][i] == ' '))
+					return (0);
+				else if (!map[j + 1] || !map[j][i + 1]
+					|| (map[j + 1] && ft_strlen(map[j + 1]) < (size_t)i + 1) 
+					|| (j > 0 && ft_strlen(map[j - 1]) < (size_t)i + 1))
 					return (0);
 			}
 		}
@@ -118,7 +123,6 @@ int	has_valid_pec(t_game *game)
 			j++;
 		}
 	}
-    // printf ("====>%d\n", game->start_position_count);
 	if (game->start_position_count != 1)
 		return (0);
 	return (1);
