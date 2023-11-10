@@ -6,7 +6,7 @@
 /*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:06:03 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/11/09 21:45:52 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/11/10 10:17:04 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,3 +41,16 @@ int	has_double_newline(char *map)
 	}
 	return (0);
 }
+
+// int	has_right_identifiers(char **map)
+// {
+// 	int	i;
+// 	int	count;
+
+// 	i = 0;
+// 	count = 0;
+// 	while (map[i] && i < 6)
+// 	{
+// 		if (map[i][0] = )
+// 	}
+// }

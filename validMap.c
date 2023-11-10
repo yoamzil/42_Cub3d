@@ -6,7 +6,7 @@
 /*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:36:41 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/11/09 21:45:20 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/11/10 10:35:24 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,15 @@ int	walls_support(char **map, int height, int width)
 		width = ft_strlen(map[j]);
 		while (map[j][++i])
 		{
-			if (map[j][i] == '0')
+			if (map[j][i] == '0' || map[j][i] == 'N' || map[j][i] == 'S'
+				|| map[j][i] == 'E' || map[j][i] == 'W')
 			{
 				if ((i > 0 && map[j][i - 1] == ' ') || (i == 0)
 					|| (map[j][i + 1] && map[j][i + 1] == ' ')
 					|| (j > 0 && map[j - 1][i] == ' ') || (j == 0)
-					|| (map[j + 1] && map[j + 1][i] == ' '))
-					return (0);
-				else if (!map[j + 1] || !map[j][i + 1]
-					|| (map[j + 1] && ft_strlen(map[j + 1]) < (size_t)i + 1) 
+					|| (map[j + 1] && map[j + 1][i] == ' ') || !map[j + 1]
+					|| !map[j][i + 1]
+					|| (map[j + 1] && ft_strlen(map[j + 1]) < (size_t)i + 1)
 					|| (j > 0 && ft_strlen(map[j - 1]) < (size_t)i + 1))
 					return (0);
 			}
