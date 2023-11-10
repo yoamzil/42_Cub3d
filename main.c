@@ -6,7 +6,7 @@
 /*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:11:00 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/11/10 16:47:47 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/11/10 18:01:07 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,9 @@ int	main(int ac, char **av)
 			&& is_valid_arg(av[1]))
 			printf("Valid Map\n");
 		else
-			printf("Invalid Map\n");
+		{
+			printf("Error\nInvalid Map\n");
+			exit (1);
+		}
 	}
 }
