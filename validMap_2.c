@@ -6,7 +6,7 @@
 /*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:06:03 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/11/10 18:57:28 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/11/10 19:09:39 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 int	is_valid_map(t_game *game, int i)
 {
 	if (is_surrounded_by_walls(game->map, i)
-		&& is_valid_map_chars(game->map, i) && has_valid_pec(game, i) && has_right_identifiers(game->map))
+		&& is_valid_map_chars(game->map, i) && has_valid_pec(game, i)
+		&& has_right_identifiers(game->map))
 		return (1);
 	return (0);
 }
@@ -51,11 +52,13 @@ int	has_right_identifiers(char **map)
 	count = 0;
 	while (map[i] && i < 6)
 	{
-		if (!ft_strncmp("NO ", map[i], 2) || !ft_strncmp("SO ", map[i], 2) || !ft_strncmp("WE ", map[i], 2) || !ft_strncmp("EA ", map[i], 2))
+		if (!ft_strncmp("NO ", map[i], 2) || !ft_strncmp("SO ", map[i], 2)
+			|| !ft_strncmp("WE ", map[i], 2) || !ft_strncmp("EA ", map[i], 2)
+			|| !ft_strncmp("F ", map[i], 1) || !ft_strncmp("C ", map[i], 1))
 		{
 			count++;
 		}
-		if (count == 4)
+		if (count == 6)
 			return (1);
 		i++;
 	}
