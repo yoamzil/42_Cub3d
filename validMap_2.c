@@ -6,7 +6,7 @@
 /*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:06:03 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/11/10 19:09:39 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/11/10 21:15:25 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,7 @@ int	has_double_newline(char *map)
 	i = 0;
 	while (map[i])
 	{
-		if (map[i] == '1' && map[i + 1] == '1'
-			&& map[i + 2] == '1' && map[i + 3] == '1')
+		if (map[i] == '1' && map[i + 1] == '1' && map[i + 3] != ',')
 			count = 1;
 		if (count == 1 && map[i] == '\n' && map[i + 1] == '\n')
 		{
