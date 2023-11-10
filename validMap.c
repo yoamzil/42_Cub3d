@@ -6,7 +6,7 @@
 /*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:36:41 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/11/10 21:07:18 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/11/10 21:20:03 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ int	walls_support(char **map, int height)
 		i = -1;
 		while (map[j][++i])
 		{
-			// printf("dkhel\n");
 			if (map[j][i] == '0' || map[j][i] == 'N' || map[j][i] == 'S'
 				|| map[j][i] == 'E' || map[j][i] == 'W')
 			{
