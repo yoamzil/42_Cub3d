@@ -6,7 +6,7 @@
 /*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:11:00 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/11/10 15:52:53 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/11/10 16:47:47 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,18 +44,21 @@ int	main(int ac, char **av)
 {
 	t_game	game;
 	int		i;
+	int		height;
 
+	height = 0;
 	i = 6;
 	if (ac == 2)
 	{
 		game.map = read_map(av[1]);
-		if (game.map && game.map[i] && is_valid_map(&game, i) && is_valid_arg(av[1]))
-		{
+		if (!game.map)
+			exit(1);
+		while (game.map[height])
+			height++;
+		if (game.map[i] && height > 6 && is_valid_map(&game, i)
+			&& is_valid_arg(av[1]))
 			printf("Valid Map\n");
-		}
 		else
-		{
 			printf("Invalid Map\n");
-		}
 	}
 }
