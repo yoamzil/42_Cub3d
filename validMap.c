@@ -6,7 +6,7 @@
 /*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:36:41 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/11/10 10:35:24 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/11/10 15:48:54 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	is_valid_arg(char *arg)
 	return (0);
 }
 
-int	walls_support(char **map, int height, int width)
+int	walls_support(char **map, int height)
 {
 	int	i;
 	int	j;
@@ -38,7 +38,6 @@ int	walls_support(char **map, int height, int width)
 	while (++j < height)
 	{
 		i = -1;
-		width = ft_strlen(map[j]);
 		while (map[j][++i])
 		{
 			if (map[j][i] == '0' || map[j][i] == 'N' || map[j][i] == 'S'
@@ -69,7 +68,7 @@ int	is_surrounded_by_walls(char **map, int i)
 	width = ft_strlen(map[i]);
 	if (width < 2 || height < 2)
 		return (0);
-	if (walls_support(map, height, width))
+	if (walls_support(map, height))
 		return (1);
 	return (0);
 }
