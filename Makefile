@@ -10,6 +10,7 @@ HFS			=	cube.h
 SRCS		=	main.c \
 				validMap.c \
 				validMap_2.c \
+				store_textures.c \
 				get_next_line/get_next_line.c \
 				get_next_line/get_next_line_utils.c \
 				libft/ft_atoi.c \
