@@ -6,7 +6,7 @@
 /*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:06:03 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/11/11 15:15:09 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/11/12 11:51:36 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,21 @@ int	has_right_identifiers(t_game game, char **map)
 		i++;
 	}
 	return (0);
+}
+
+void has_right_rgb(t_game game)
+{
+    char    **rgb_array;
+    int     i;
+
+    rgb_array = ft_split(game.F, ',');
+    i = 0;
+    while (rgb_array[i])
+        i++;
+    if (i == 3)
+    {
+        printf("howa hadak\n");
+    }
+    else 
+        printf("mashy howa hadak\n");
 }

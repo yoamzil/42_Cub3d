@@ -6,7 +6,7 @@
 /*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:11:09 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/11/11 15:22:45 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/11/11 22:59:28 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,6 @@ int		has_right_identifiers(t_game game, char **map);
 void	store_textures(t_game *game, char **map);
 void	store_floor(t_game *game, char **map, int i);
 void	store_ceiling(t_game *game, char **map, int i);
+void    has_right_rgb(t_game game);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:11:00 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/11/11 15:20:00 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/11/11 23:01:00 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,14 +92,15 @@ int	main(int ac, char **av)
 		if (game.map[i] && height > 6 && is_valid_map(&game, i)
 			&& is_valid_arg(av[1]))
 		{
-            printf("Valid Map\n");
             store_textures(&game, game.map);
+            has_right_rgb(game);
             printf("%s\n", game.NO);
             printf("%s\n", game.SO);
             printf("%s\n", game.WE);
             printf("%s\n", game.EA);
             printf("%s\n", game.F);
             printf("%s\n", game.C);
+            printf("\nValid Map\n");
         }
 		else
 		{
