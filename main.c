@@ -6,7 +6,7 @@
 /*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:11:00 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/11/11 23:01:00 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/11/12 21:18:20 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,36 +40,34 @@ char	**read_map(char *filepath)
 	return (map_array);
 }
 
-void    store_floor(t_game *game, char **map, int i)
+void	store_floor(t_game *game, char **map, int i)
 {
-    int j;
-    int k;
+	int		j;
+	int		k;
+	char	**tmp;
 
-    j = 2;
-    k = 0;
-    game->F = malloc(ft_strlen(map[i]) - 3);
-    while ((size_t)j < ft_strlen(map[i]))
-    {
-        game->F[k] = map[i][j];
-        k++;
-        j++;
-    }
+	j = 3;
+	k = 0;
+	tmp = ft_split(map[i], ' ');
+	if (tab_counter(tmp) != 2)
+		error();
+	game->f = ft_strdup(tmp[1]);
+	free_tab(tmp);
 }
 
-void    store_ceiling(t_game *game, char **map, int i)
+void	store_ceiling(t_game *game, char **map, int i)
 {
-    int j;
-    int k;
+	int		j;
+	int		k;
+	char	**tmp;
 
-    j = 2;
-    k = 0;
-    game->C = malloc(ft_strlen(map[i]) - 3);
-    while ((size_t)j < ft_strlen(map[i]))
-    {
-        game->C[k] = map[i][j];
-        k++;
-        j++;
-    }
+	j = 3;
+	k = 0;
+	tmp = ft_split(map[i], ' ');
+	if (tab_counter(tmp) != 2)
+		error();
+	game->c = ft_strdup(tmp[1]);
+	free_tab(tmp);
 }
 
 int	main(int ac, char **av)
@@ -78,34 +76,24 @@ int	main(int ac, char **av)
 	int		i;
 	int		height;
 
-
-    ft_bzero(&game, sizeof(t_game));
+	ft_bzero(&game, sizeof(t_game));
 	i = 6;
 	height = 0;
 	if (ac == 2)
 	{
 		game.map = read_map(av[1]);
 		if (!game.map)
-			exit(1);
+			error();
 		while (game.map[height])
 			height++;
 		if (game.map[i] && height > 6 && is_valid_map(&game, i)
 			&& is_valid_arg(av[1]))
 		{
-            store_textures(&game, game.map);
-            has_right_rgb(game);
-            printf("%s\n", game.NO);
-            printf("%s\n", game.SO);
-            printf("%s\n", game.WE);
-            printf("%s\n", game.EA);
-            printf("%s\n", game.F);
-            printf("%s\n", game.C);
-            printf("\nValid Map\n");
-        }
-		else
-		{
-			printf("Error\nInvalid Map\n");
-			exit (1);
+			store_textures(&game, game.map);
+			has_right_rgb(game);
+			printf("Valid Map\n");
 		}
+		else
+			error();
 	}
 }

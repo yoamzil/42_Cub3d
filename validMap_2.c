@@ -6,7 +6,7 @@
 /*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:06:03 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/11/12 11:51:36 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/11/12 21:16:39 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,7 @@ int	has_double_newline(char *map)
 		if (map[i] == '1' && map[i + 1] == '1' && map[i + 3] != ',')
 			count = 1;
 		if (count == 1 && map[i] == '\n' && map[i + 1] == '\n')
-		{
-			printf("Error\nEmpty Line Found\n");
-			exit(1);
-		}
+			error();
 		i++;
 	}
 	return (0);
@@ -49,38 +46,49 @@ int	has_right_identifiers(t_game game, char **map)
 	i = 0;
 	while (map[i] && i < 6)
 	{
-		if (!ft_strncmp("NO ", map[i], 3) && game.NO_count == 0)
-            game.NO_count = 1;
-		if (!ft_strncmp("SO ", map[i], 3) && game.SO_count == 0)
-            game.SO_count = 1;
-		if (!ft_strncmp("WE ", map[i], 3) && game.WE_count == 0)
-            game.WE_count = 1;
-		if (!ft_strncmp("EA ", map[i], 3) && game.EA_count == 0)
-            game.EA_count = 1;
-		if (!ft_strncmp("F ", map[i], 2) && game.F_count == 0)
-            game.F_count = 1;
-		if (!ft_strncmp("C ", map[i], 2) && game.C_count == 0)
-            game.C_count = 1;
-		if (game.NO_count + game.SO_count + game.WE_count + game.EA_count + game.F_count + game.C_count == 6)
+		if (!ft_strncmp("NO ", map[i], 3) && game.no_count == 0)
+			game.no_count = 1;
+		if (!ft_strncmp("SO ", map[i], 3) && game.so_count == 0)
+			game.so_count = 1;
+		if (!ft_strncmp("WE ", map[i], 3) && game.we_count == 0)
+			game.we_count = 1;
+		if (!ft_strncmp("EA ", map[i], 3) && game.ea_count == 0)
+			game.ea_count = 1;
+		if (!ft_strncmp("F ", map[i], 2) && game.f_count == 0)
+			game.f_count = 1;
+		if (!ft_strncmp("C ", map[i], 2) && game.c_count == 0)
+			game.c_count = 1;
+		if (game.no_count + game.so_count + game.we_count
+			+ game.ea_count + game.f_count + game.c_count == 6)
 			return (1);
 		i++;
 	}
 	return (0);
 }
 
-void has_right_rgb(t_game game)
+int	has_right_rgb(t_game game)
 {
-    char    **rgb_array;
-    int     i;
+	char	**rgb_f_array;
+	char	**rgb_c_array;
 
-    rgb_array = ft_split(game.F, ',');
-    i = 0;
-    while (rgb_array[i])
-        i++;
-    if (i == 3)
-    {
-        printf("howa hadak\n");
-    }
-    else 
-        printf("mashy howa hadak\n");
+	if (comma_count(game.f) != 2 || comma_count(game.c) != 2
+		|| !check_numbers(game.f) || !check_numbers(game.c))
+		error();
+	rgb_f_array = ft_split(game.f, ',');
+	rgb_c_array = ft_split(game.c, ',');
+	if (tab_counter(rgb_f_array) == 3 && tab_counter(rgb_c_array) == 3)
+	{
+		if (ft_atoi(rgb_f_array[0]) >= 0 && ft_atoi(rgb_f_array[0]) <= 255
+			&& ft_atoi(rgb_f_array[1]) >= 0 && ft_atoi(rgb_f_array[1]) <= 255
+			&& ft_atoi(rgb_f_array[2]) >= 0 && ft_atoi(rgb_f_array[2]) <= 255
+			&& ft_atoi(rgb_c_array[0]) >= 0 && ft_atoi(rgb_c_array[0]) <= 255
+			&& ft_atoi(rgb_c_array[1]) >= 0 && ft_atoi(rgb_c_array[1]) <= 255
+			&& ft_atoi(rgb_c_array[2]) >= 0 && ft_atoi(rgb_c_array[2]) <= 255)
+			return (0);
+		else 
+			error();
+	}
+	else
+		error();
+	return (1);
 }
