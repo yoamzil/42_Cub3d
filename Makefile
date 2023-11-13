@@ -1,62 +1,71 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: omakran <omakran@student.1337.ma >         +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/11/13 17:13:53 by omakran           #+#    #+#              #
-#    Updated: 2023/11/13 17:40:50 by omakran          ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 NAME		=	cub3D
 
-LIBFT       =   libft/libft.a
+CC			=	cc
+CFLAGS		=	-Wall -Werror -Wextra
 
-GET_NEXT_SRC = 	get_next_line/get_next_line.c \
-				get_next_line/get_next_line_utils.c 
+# GLFW = $(shell brew --prefix glfw)
+#FRAMEWORKS = /Users/omakran/MLX42/build/libmlx42.a -Iinclude -lglfw -L $(GLFW)/lib/ -framework Cocoa -framework OpenGL -framework IOKit
 
-GLFW = $(shell brew --prefix glfw)
 
-FRAMEWORKS = /Users/omakran/MLX42/build/libmlx42.a -Iinclude -lglfw -L $(GLFW)/lib/ -framework Cocoa -framework OpenGL -framework IOKit
-#MLX         =   -lmlx -framework OpenGL -framework AppKit
-
-HFS			=	parsing/cube.h
-
-SRCS		=	parsing/main.c \
+OBJS		=	$(SRCS:.c=.o)
+HFS			=	cube.h
+SRCS		=	main.c \
 				parsing/validMap.c \
 				parsing/validMap_2.c \
 				parsing/store_textures.c \
 				parsing/tools.c \
-				$(GET_NEXT_SRC) \
+				get_next_line/get_next_line.c \
+				get_next_line/get_next_line_utils.c \
+				libft/ft_atoi.c \
+				libft/ft_bzero.c \
+				libft/ft_calloc.c \
+				libft/ft_isalnum.c \
+				libft/ft_isalpha.c \
+				libft/ft_isascii.c \
+				libft/ft_isdigit.c \
+				libft/ft_isprint.c \
+				libft/ft_itoa.c \
+				libft/ft_memchr.c \
+				libft/ft_memcmp.c \
+				libft/ft_memcpy.c \
+				libft/ft_memmove.c \
+				libft/ft_memset.c \
+				libft/ft_putchar_fd.c \
+				libft/ft_putendl_fd.c \
+				libft/ft_putnbr_fd.c \
+				libft/ft_putstr_fd.c \
+				libft/ft_split.c \
+				libft/ft_strchr.c \
+				libft/ft_strdup.c \
+				libft/ft_striteri.c \
+				libft/ft_strjoin.c \
+				libft/ft_strlcat.c \
+				libft/ft_strlcpy.c \
+				libft/ft_strlen.c \
+				libft/ft_strmapi.c \
+				libft/ft_strncmp.c \
+				libft/ft_strnstr.c \
+				libft/ft_strrchr.c \
+				libft/ft_strtrim.c \
+				libft/ft_substr.c \
+				libft/ft_tolower.c \
+				libft/ft_toupper.c \
 
-CC = cc
 
-CFLAGS =  -Wall -Wextra -Werror
+%.o			:	%.c $(HFS)
+				$(CC) $(MLX) $(CFLAGS) -c $< -o $@
 
-OBJS = $(SRCS:.c=.o)
+all			:	$(NAME)
 
-RM = rm -rf
+$(NAME)		:	$(OBJS) $(HFS)
+				$(CC) $(MLX) $(CFLAGS) $(OBJS) $(FRAMEWORKS) -o $(NAME)
 
-all: $(NAME)
+clean		:
+				rm -f $(OBJS)
 
-%.o: %.c $(HFS)
-	$(CC) $(CFLAGS) -c $< -o $@
+fclean		:	clean
+				rm -f $(NAME)
 
-$(NAME) : $(OBJS) $(HFS)
-	@make -C libft
-	$(CC)  $(CFLAGS) $(OBJS) $(FRAMEWORKS) $(LIBFT) -o $(NAME)
+re			:	fclean all
 
-clean:
-	@make -C libft/ clean
-	$(RM) $(OBJS)
-
-fclean: clean
-	$(RM) $(NAME)
-	@make -C libft/ fclean
-
-re: fclean all
-	@make -C libft fclean
-
-.PHONY: all clean fclean re
+.PHONY		:	clean fclean all re

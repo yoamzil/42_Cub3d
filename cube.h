@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omakran <omakran@student.1337.ma >         +#+  +:+       +#+        */
+/*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:11:09 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/11/13 17:34:29 by omakran          ###   ########.fr       */
+/*   Updated: 2023/11/13 19:43:30 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 # include <stdio.h>
 # include <unistd.h>
-# include "../get_next_line/get_next_line.h"
-# include "../libft/libft.h"
+# include "get_next_line/get_next_line.h"
+# include "libft/libft.h"
 
 typedef struct s_game
 {

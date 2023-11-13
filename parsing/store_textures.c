@@ -6,11 +6,11 @@
 /*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 14:39:49 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/11/12 21:16:04 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/11/13 19:27:51 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube.h"
+#include "../cube.h"
 
 void	store_north(t_game *game, char **map, int i)
 {

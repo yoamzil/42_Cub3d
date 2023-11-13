@@ -6,11 +6,11 @@
 /*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:06:03 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/11/12 21:16:39 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/11/13 19:27:45 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube.h"
+#include "../cube.h"
 
 int	is_valid_map(t_game *game, int i)
 {

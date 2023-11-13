@@ -6,11 +6,11 @@
 /*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:36:41 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/11/11 22:33:08 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/11/13 19:27:35 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube.h"
+#include "../cube.h"
 
 int	is_valid_arg(char *arg)
 {

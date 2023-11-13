@@ -6,11 +6,11 @@
 /*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 21:15:23 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/11/12 21:16:45 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/11/13 19:27:57 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube.h"
+#include "../cube.h"
 
 int	tab_counter(char **tab)
 {
