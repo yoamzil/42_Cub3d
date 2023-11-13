@@ -6,14 +6,13 @@
 /*   By: omakran <omakran@student.1337.ma >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 17:53:47 by omakran           #+#    #+#             */
-/*   Updated: 2023/11/13 20:04:53 by omakran          ###   ########.fr       */
+/*   Updated: 2023/11/13 21:05:42 by omakran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube.h"
 
 #define BPP sizeof(int)
-
 
 int	intialize_window(void)
 {
@@ -33,4 +32,3 @@ int	intialize_window(void)
 	mlx_terminate(win);
 	return (EXIT_SUCCESS);
 }
-
