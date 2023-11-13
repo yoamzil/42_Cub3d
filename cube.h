@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: omakran <omakran@student.1337.ma >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:11:09 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/11/13 19:43:30 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/11/13 19:59:15 by omakran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <unistd.h>
 # include "get_next_line/get_next_line.h"
 # include "libft/libft.h"
+# include "../../MLX42/include/MLX42/MLX42.h"
 
 typedef struct s_game
 {
@@ -52,5 +53,7 @@ int		free_tab(char **tab);
 void	error(void);
 int		check_numbers(char *str);
 int		comma_count(char *str);
+int		intialize_window(void);
+int		close_game(void *param);
 
 #endif

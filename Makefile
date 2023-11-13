@@ -3,8 +3,9 @@ NAME		=	cub3D
 CC			=	cc
 CFLAGS		=	-Wall -Werror -Wextra
 
-# GLFW = $(shell brew --prefix glfw)
-#FRAMEWORKS = /Users/omakran/MLX42/build/libmlx42.a -Iinclude -lglfw -L $(GLFW)/lib/ -framework Cocoa -framework OpenGL -framework IOKit
+GLFW		=	$(shell brew --prefix glfw)
+
+FRAMEWORKS = /Users/omakran/MLX42/build/libmlx42.a -Iinclude -lglfw -L $(GLFW)/lib/ -framework Cocoa -framework OpenGL -framework IOKit
 
 
 OBJS		=	$(SRCS:.c=.o)
@@ -14,6 +15,8 @@ SRCS		=	main.c \
 				parsing/validMap_2.c \
 				parsing/store_textures.c \
 				parsing/tools.c \
+				raycasting/close_game.c\
+				raycasting/create_mlx_window.c\
 				get_next_line/get_next_line.c \
 				get_next_line/get_next_line_utils.c \
 				libft/ft_atoi.c \

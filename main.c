@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: omakran <omakran@student.1337.ma >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:11:00 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/11/13 19:44:31 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/11/13 20:06:48 by omakran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ int	main(int ac, char **av)
 			store_textures(&game, game.map);
 			has_right_rgb(game);
 			printf("Valid Map\n");
+			intialize_window();
 		}
 		else
 			error();
