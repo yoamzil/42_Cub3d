@@ -6,7 +6,7 @@
 /*   By: omakran <omakran@student.1337.ma >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:11:09 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/11/14 09:53:59 by omakran          ###   ########.fr       */
+/*   Updated: 2023/11/14 13:02:31 by omakran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,6 @@ int		check_numbers(char *str);
 int		comma_count(char *str);
 int		intialize_window(void);
 int		close_game(void *param);
+void	draw_square(void *win, int x, int y, int size_square, int color);
 
 #endif

@@ -1,8 +1,8 @@
 NAME		=	cub3D
 
 CC			=	cc
-CFLAGS		=	-Wall -Werror -Wextra
-
+CFLAGS		=	-Wall -Werror -Wextra #-fsanitize=address -g
+ 
 GLFW		=	$(shell brew --prefix glfw)
 
 FRAMEWORKS = MLX42/build/libmlx42.a -Iinclude -lglfw -L $(GLFW)/lib/ -framework Cocoa -framework OpenGL -framework IOKit
