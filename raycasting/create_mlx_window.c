@@ -6,7 +6,7 @@
 /*   By: omakran <omakran@student.1337.ma >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 17:53:47 by omakran           #+#    #+#             */
-/*   Updated: 2023/11/14 11:07:36 by omakran          ###   ########.fr       */
+/*   Updated: 2023/11/14 11:26:09 by omakran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,7 @@ void ft_randomize()
 		y = 0;
 		while (y < img->height)
 		{
-			color = ft_pixel(
-			rand() % 0xFF, // R
-			rand() % 0xFF, // G
-			rand() % 0xFF, // B
-			rand() % 0xFF  // A
-			);
+			color = ft_pixel(0xFF , 0xFF , 0xFF, 0xFF);
 			mlx_put_pixel(img, i, y, color);
 			y++;
 		}
