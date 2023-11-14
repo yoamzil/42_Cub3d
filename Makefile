@@ -15,6 +15,7 @@ SRCS		=	main.c \
 				parsing/validMap_2.c \
 				parsing/store_textures.c \
 				parsing/tools.c \
+				parsing/init.c \
 				raycasting/close_game.c\
 				raycasting/create_mlx_window.c\
 				get_next_line/get_next_line.c \

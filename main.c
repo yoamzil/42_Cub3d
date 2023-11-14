@@ -6,7 +6,7 @@
 /*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:11:00 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/11/14 16:43:12 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/11/14 19:35:28 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,24 +74,24 @@ int	main(int ac, char **av)
 {
 	t_game	game;
 	int		i;
-	int		height;
+	int		row;
 
 	ft_bzero(&game, sizeof(t_game));
 	i = 6;
-	height = 0;
+	row = 0;
 	if (ac == 2)
 	{
-		game.map = read_map(av[1]);
-		if (!game.map)
+		game.file = read_map(av[1]);
+		if (!game.file)
 			error();
-		while (game.map[height])
-			height++;
-		if (game.map[i] && height > 6 && is_valid_map(&game, i)
+		while (game.file[row])
+			row++;
+		if (game.file[i] && row > 6 && is_valid_map(&game, i)
 			&& is_valid_arg(av[1]))
 		{
-			store_textures(&game, game.map);
+			store_textures(&game, game.file);
 			has_right_rgb(game);
-			printf("Valid Map\n");
+			init_variables(&game);
 			intialize_window();
 		}
 		else

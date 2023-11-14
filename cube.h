@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omakran <omakran@student.1337.ma >         +#+  +:+       +#+        */
+/*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:11:09 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/11/14 13:02:31 by omakran          ###   ########.fr       */
+/*   Updated: 2023/11/14 19:32:24 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,10 @@
 typedef struct s_game
 {
 	char	**map;
+	int		width;
+	int		height;
+	int		start_position;
+	char	**file;
 	char	*no;
 	char	*so;
 	char	*we;
@@ -38,7 +42,6 @@ typedef struct s_game
 	int		ea_count;
 	int		f_count;
 	int		c_count;
-	int		start_position;
 }	t_game;
 
 int		is_valid_map(t_game *game, int i);
@@ -60,5 +63,6 @@ int		comma_count(char *str);
 int		intialize_window(void);
 int		close_game(void *param);
 void	draw_square(void *win, int x, int y, int size_square, int color);
+void	init_variables(t_game *game);
 
 #endif
