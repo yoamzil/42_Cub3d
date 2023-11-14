@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validMap_2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omakran <omakran@student.1337.ma >         +#+  +:+       +#+        */
+/*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:06:03 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/11/14 13:32:01 by omakran          ###   ########.fr       */
+/*   Updated: 2023/11/14 16:05:15 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	has_double_newline(char *map)
 
 	count = 0;
 	i = 0;
-	while (map[i])
+	while (map[i] && map[i + 3])
 	{
 		if (map[i] == '1' && map[i + 1] == '1' && map[i + 3] != ',')
 			count = 1;
