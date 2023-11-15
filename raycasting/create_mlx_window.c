@@ -6,107 +6,80 @@
 /*   By: omakran <omakran@student.1337.ma >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 17:53:47 by omakran           #+#    #+#             */
-/*   Updated: 2023/11/14 13:35:36 by omakran          ###   ########.fr       */
+/*   Updated: 2023/11/15 15:46:44 by omakran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube.h"
 
-#define WIDTH 512
-#define HEIGHT 512
-#define MAP_WIDTH 13
-#define MAP_HEIGHT 11
-#define TILE_SIZE 30
+// void ft_randomize()
+// {
+// 	unsigned int	i;
+// 	unsigned int	y;
+// 	int				color;
 
-static mlx_image_t	*img;
+// 	i = 0;
+// 	while (i < img->width)
+// 	{
+// 		y = 0;
+// 		while (y < img->height)
+// 		{
+// 			color = ft_pixel(0xFF , 0xFF , 0xFF, 0xFF);
+// 			mlx_put_pixel(img, i, y, color);
+// 			y++;
+// 		}
+// 		i++;
+// 	}
+// }
 
-
-void	draw_square(void __unused *img , int x, int y, int size_square, int __unused color)
+void	ft_hook(void *param)
 {
-	int	i;
-	int	j;
+	t_game	*game;
+	mlx_t	*mlx;
 
-	i = x;
-	while (i < x + size_square)
-	{
-		j = y;
-		while (j < y + size_square)
-		{
-			mlx_put_pixel(img, j, i, color);
-			j++;
-		}
-		i++;
-	}
-}
-
-int ft_pixel(int r, int g, int b, int a)
-{
-    return (r << 24 | g << 16 | b << 8 | a);
-}
-
-void ft_randomize()
-{
-	unsigned int	i;
-	unsigned int	y;
-	int				color;
-
-	i = 0;
-	while (i < img->width)
-	{
-		y = 0;
-		while (y < img->height)
-		{
-			color = ft_pixel(0xFF , 0xFF , 0xFF, 0xFF);
-			
-			mlx_put_pixel(img, i, y, color);
-			y++;
-		}
-		i++;
-	}
-}
-
-void ft_hook(void* param)
-{
-	mlx_t* mlx;
-
+	game = (t_game *)param;
 	mlx = param;
 	if (mlx_is_key_down(mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(mlx);
 	if (mlx_is_key_down(mlx, MLX_KEY_UP))
-		img->instances[0].y -= 7;
+		game->img->instances[0].y -= 7;
 	if (mlx_is_key_down(mlx, MLX_KEY_DOWN))
-		img->instances[0].y += 7;
+		game->img->instances[0].y += 7;
 	if (mlx_is_key_down(mlx, MLX_KEY_LEFT))
-		img->instances[0].x -= 7;
+		game->img->instances[0].x -= 7;
 	if (mlx_is_key_down(mlx, MLX_KEY_RIGHT))
-		img->instances[0].x += 7;
+		game->img->instances[0].x += 7;
 }
-int	intialize_window(void)
-{
-	mlx_t		*win;
-	mlx_image_t *img;
-	win = mlx_init(800, 600, "cub3D", true);
 
-	// if (!win)
-	// {
-	// 	ft_putstr_fd("Error Initializing MLX!.\n", 2);
-	// 	exit (EXIT_FAILURE);
-	// }
-	if (!(img = mlx_new_image(win,800, 600)))
+int	intialize_window(t_game *game)
+{
+	game->win = mlx_init(game->width * 50, game->height * 50, "cub3D", true);
+	if (!game->win)
 	{
-		ft_putstr_fd("Error Initializing IMG.\n", 2);
-		exit (EXIT_FAILURE);
+		ft_putstr_fd("Error Initializing MLX!.\n", 2);
+		exit(EXIT_FAILURE);
 	}
-	draw_square(img, 0, 0, 100, 0xFFFFF);
-	if (mlx_image_to_window(win, img, 0, 0) == -1)
+	game->mini_map = mlx_new_image(game->win, \
+		game->width * 50, game->height * 50);
+	if (!(game->mini_map))
 	{
-		mlx_close_window(win);
+		ft_putstr_fd("Error Initializing MINI_MAP.\n", 2);
+		exit(EXIT_FAILURE);
+	}
+	drawing(game);
+	if (mlx_image_to_window(game->win, game->mini_map, 0, 0) == -1)
+	{
+		mlx_close_window(game->win);
 		ft_putstr_fd("Error Initializing WIN.\n", 2);
-		exit (EXIT_FAILURE);
+		exit(EXIT_FAILURE);
 	}
-	// mlx_loop_hook(win, ft_randomize, win);
-	// mlx_loop_hook(win, ft_hook, win);
-	mlx_loop(win);
-	mlx_terminate(win);
+	mlx_loop(game->win);
+	mlx_terminate(game->win);
 	return (EXIT_SUCCESS);
+}
+
+void	start(t_game *game)
+{
+	intialize_window(game);
+	mlx_loop_hook(game->win, ft_hook, game->win);
 }

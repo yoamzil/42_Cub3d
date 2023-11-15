@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: omakran <omakran@student.1337.ma >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:11:00 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/11/14 19:35:28 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/11/15 11:11:19 by omakran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int	main(int ac, char **av)
 			store_textures(&game, game.file);
 			has_right_rgb(game);
 			init_variables(&game);
-			intialize_window();
+			start(&game);
 		}
 		else
 			error();
