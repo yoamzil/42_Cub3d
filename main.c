@@ -6,7 +6,7 @@
 /*   By: omakran <omakran@student.1337.ma >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:11:00 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/11/15 11:11:19 by omakran          ###   ########.fr       */
+/*   Updated: 2023/11/16 12:07:49 by omakran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ int	main(int ac, char **av)
 			store_textures(&game, game.file);
 			has_right_rgb(game);
 			init_variables(&game);
+			get_player_position(&game);
 			start(&game);
 		}
 		else

@@ -6,7 +6,7 @@
 /*   By: omakran <omakran@student.1337.ma >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:11:09 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/11/15 15:48:32 by omakran          ###   ########.fr       */
+/*   Updated: 2023/11/16 11:58:59 by omakran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,30 +22,37 @@
 # define TILE_SIZE 30
 # define WIDTH 800
 # define HEIGHT 600
-# define SIZE_SQUARE 50
+# define SQUAR_SIZE 50
+
+typedef struct s_player_x_y
+{
+	float	x;	
+	float	y;	
+}	t_player_x_y;
 
 typedef struct s_game
 {
-	char		**map;
-	int			width;
-	int			height;
-	int			start_position;
-	mlx_t		*win;
-	mlx_image_t	*img;
-	mlx_image_t	*mini_map;
-	char		**file;
-	char		*no;
-	char		*so;
-	char		*we;
-	char		*ea;
-	char		*f;
-	char		*c;
-	int			no_count;
-	int			so_count;
-	int			we_count;
-	int			ea_count;
-	int			f_count;
-	int			c_count;
+	char			**map;
+	int				width;
+	int				height;
+	int				start_position;
+	mlx_t			*win;
+	mlx_image_t		*img;
+	mlx_image_t		*mini_map;
+	char			**file;
+	char			*no;
+	char			*so;
+	char			*we;
+	char			*ea;
+	char			*f;
+	char			*c;
+	int				no_count;
+	int				so_count;
+	int				we_count;
+	int				ea_count;
+	int				f_count;
+	int				c_count;
+	t_player_x_y	*player_pos;
 }				t_game;
 
 int				is_valid_map(t_game *game, int i);
@@ -73,5 +80,6 @@ void			start(t_game *game);
 void			draw_square(t_game *game, int x, int y, int __unused color);
 void			init_variables(t_game *game);
 void			draw_map(t_game *game);
+void			get_player_position(t_game *game);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: omakran <omakran@student.1337.ma >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 17:53:47 by omakran           #+#    #+#             */
-/*   Updated: 2023/11/15 15:46:44 by omakran          ###   ########.fr       */
+/*   Updated: 2023/11/16 12:06:01 by omakran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,25 +32,6 @@
 // 	}
 // }
 
-void	ft_hook(void *param)
-{
-	t_game	*game;
-	mlx_t	*mlx;
-
-	game = (t_game *)param;
-	mlx = param;
-	if (mlx_is_key_down(mlx, MLX_KEY_ESCAPE))
-		mlx_close_window(mlx);
-	if (mlx_is_key_down(mlx, MLX_KEY_UP))
-		game->img->instances[0].y -= 7;
-	if (mlx_is_key_down(mlx, MLX_KEY_DOWN))
-		game->img->instances[0].y += 7;
-	if (mlx_is_key_down(mlx, MLX_KEY_LEFT))
-		game->img->instances[0].x -= 7;
-	if (mlx_is_key_down(mlx, MLX_KEY_RIGHT))
-		game->img->instances[0].x += 7;
-}
-
 int	intialize_window(t_game *game)
 {
 	game->win = mlx_init(game->width * 50, game->height * 50, "cub3D", true);
@@ -73,13 +54,14 @@ int	intialize_window(t_game *game)
 		ft_putstr_fd("Error Initializing WIN.\n", 2);
 		exit(EXIT_FAILURE);
 	}
-	mlx_loop(game->win);
-	mlx_terminate(game->win);
 	return (EXIT_SUCCESS);
 }
 
 void	start(t_game *game)
 {
 	intialize_window(game);
-	mlx_loop_hook(game->win, ft_hook, game->win);
+	get_player_position(game);
+	mlx_loop_hook(game->win, ft_hook, game);
+	mlx_loop(game->win);
+	mlx_terminate(game->win);
 }

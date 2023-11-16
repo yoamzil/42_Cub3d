@@ -20,6 +20,7 @@ SRCS		=	main.c \
 				raycasting/drawing.c\
 				raycasting/create_mlx_window.c\
 				raycasting/draw_map.c \
+				raycasting/move_the_player.c \
 				get_next_line/get_next_line.c \
 				get_next_line/get_next_line_utils.c \
 				libft/ft_atoi.c \
