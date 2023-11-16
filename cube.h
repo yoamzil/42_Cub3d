@@ -6,7 +6,7 @@
 /*   By: omakran <omakran@student.1337.ma >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:11:09 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/11/16 11:58:59 by omakran          ###   ########.fr       */
+/*   Updated: 2023/11/16 16:00:58 by omakran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,15 @@
 # include "libft/libft.h"
 # include <stdio.h>
 # include <unistd.h>
+# include <math.h>
+# include <limits.h>
 
 # define TILE_SIZE 30
 # define WIDTH 800
 # define HEIGHT 600
 # define SQUAR_SIZE 50
+# define PI 3.14159265
+# define FOV_ANGLE (60 * (PI / 180))
 
 typedef struct s_player_x_y
 {
@@ -78,8 +82,11 @@ void			store_ceiling(t_game *game, char **map, int i);
 void			error(void);
 void			start(t_game *game);
 void			draw_square(t_game *game, int x, int y, int __unused color);
+void			draw_square_player(t_game *game, int x, int y, \
+								int __unused color);
 void			init_variables(t_game *game);
 void			draw_map(t_game *game);
+void			drawing_the_player(t_game *game);
 void			get_player_position(t_game *game);
 
 #endif
