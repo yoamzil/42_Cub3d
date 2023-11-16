@@ -6,7 +6,7 @@
 /*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 14:39:49 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/11/13 19:27:51 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/11/16 19:40:13 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,8 @@
 
 void	store_north(t_game *game, char **map, int i)
 {
-	int		j;
-	int		k;
 	char	**tmp;
 
-	j = 3;
-	k = 0;
 	tmp = ft_split(map[i], ' ');
 	if (tab_counter(tmp) != 2)
 		error();
@@ -29,12 +25,8 @@ void	store_north(t_game *game, char **map, int i)
 
 void	store_south(t_game *game, char **map, int i)
 {
-	int		j;
-	int		k;
 	char	**tmp;
 
-	j = 3;
-	k = 0;
 	tmp = ft_split(map[i], ' ');
 	if (tab_counter(tmp) != 2)
 		error();
@@ -44,12 +36,8 @@ void	store_south(t_game *game, char **map, int i)
 
 void	store_west(t_game *game, char **map, int i)
 {
-	int		j;
-	int		k;
 	char	**tmp;
 
-	j = 3;
-	k = 0;
 	tmp = ft_split(map[i], ' ');
 	if (tab_counter(tmp) != 2)
 		error();
@@ -59,12 +47,8 @@ void	store_west(t_game *game, char **map, int i)
 
 void	store_east(t_game *game, char **map, int i)
 {
-	int		j;
-	int		k;
 	char	**tmp;
 
-	j = 3;
-	k = 0;
 	tmp = ft_split(map[i], ' ');
 	if (tab_counter(tmp) != 2)
 		error();

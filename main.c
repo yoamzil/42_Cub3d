@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omakran <omakran@student.1337.ma >         +#+  +:+       +#+        */
+/*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:11:00 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/11/16 12:07:49 by omakran          ###   ########.fr       */
+/*   Updated: 2023/11/16 19:40:59 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,8 @@ char	**read_map(char *filepath)
 
 void	store_floor(t_game *game, char **map, int i)
 {
-	int		j;
-	int		k;
 	char	**tmp;
 
-	j = 3;
-	k = 0;
 	tmp = ft_split(map[i], ' ');
 	if (tab_counter(tmp) != 2)
 		error();
@@ -57,12 +53,8 @@ void	store_floor(t_game *game, char **map, int i)
 
 void	store_ceiling(t_game *game, char **map, int i)
 {
-	int		j;
-	int		k;
 	char	**tmp;
 
-	j = 3;
-	k = 0;
 	tmp = ft_split(map[i], ' ');
 	if (tab_counter(tmp) != 2)
 		error();
