@@ -6,7 +6,7 @@
 /*   By: omakran <omakran@student.1337.ma >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 16:21:01 by omakran           #+#    #+#             */
-/*   Updated: 2023/11/16 17:53:44 by omakran          ###   ########.fr       */
+/*   Updated: 2023/11/18 16:25:13 by omakran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@ void	drawing_the_player(t_game *game)
 			if (game->map[j][i] == 'N' || game->map[j][i] == 'S' ||
 					game->map[j][i] == 'E' || game->map[j][i] == 'W')
 			{
-				draw_square(game, j * 50, i * 50, ft_pixel(255, 255, 255, 255));
-				draw_square(game, game->player_pos->y, game->player_pos->x,
-					ft_pixel(0, 255, 0, 255));
+				draw_square(game, j * 20, i * 20, ft_pixel(255, 255, 255, 255));
+				draw_square_player(game, game->player_pos->y,
+					game->player_pos->x, ft_pixel(0, 255, 0, 255));
 				break ;
 			}
 			i++;
@@ -62,21 +62,89 @@ void	drawing_the_player(t_game *game)
 	}
 }
 
-void	ft_hook(void *param)
+int can_move_to_up(t_game *game)
 {
-	t_game	*game;
+    int x = game->player_pos->x / SQUAR_SIZE;
+    int y = game->player_pos->y / SQUAR_SIZE - PLAYER_MOVE;
 
-	game = (t_game *)param;
-	game->img = malloc(sizeof(mlx_image_t));
-	if (mlx_is_key_down(game->win, MLX_KEY_ESCAPE))
-		mlx_close_window(game->win);
-	if (mlx_is_key_down(game->win, MLX_KEY_UP))
-		game->player_pos->y -= 3;
-	if (mlx_is_key_down(game->win, MLX_KEY_DOWN))
-		game->player_pos->y += 3;
-	if (mlx_is_key_down(game->win, MLX_KEY_LEFT))
-		game->player_pos->x -= 3;
-	if (mlx_is_key_down(game->win, MLX_KEY_RIGHT))
-		game->player_pos->x += 3;
+    if (y >= 0 && y < HEIGHT / SQUAR_SIZE && x >= 0 && x < WIDTH / SQUAR_SIZE)
+	{
+        if (game->map[y][x] == '1') 
+            return (0); 
+        return (1);
+    }
+    return (0);
+}
+
+int can_move_to_down(t_game *game)
+{
+    int x = game->player_pos->x / SQUAR_SIZE;
+    int y = game->player_pos->y / SQUAR_SIZE + PLAYER_MOVE;
+
+    if (y >= 0 && y < HEIGHT / SQUAR_SIZE && x >= 0 && x < WIDTH / SQUAR_SIZE)
+	{
+        if (game->map[y][x] == '1') 
+            return (0);
+        return (1);
+    }
+    return (0);
+}
+
+int can_move_to_right(t_game *game)
+{
+    int x = game->player_pos->x / SQUAR_SIZE + PLAYER_MOVE;
+    int y = game->player_pos->y / SQUAR_SIZE;
+
+    if (y >= 0 && y < HEIGHT / SQUAR_SIZE && x >= 0 && x < WIDTH / SQUAR_SIZE)
+	{
+        if (game->map[y][x] == '1') 
+            return (0); 
+        return (1);
+    }
+    return (0);
+}
+
+int can_move_to_left(t_game *game)
+{
+    int x = game->player_pos->x / SQUAR_SIZE - PLAYER_MOVE;
+    int y = game->player_pos->y / SQUAR_SIZE;
+
+    if (y >= 0 && y < HEIGHT / SQUAR_SIZE && x >= 0 && x < WIDTH / SQUAR_SIZE)
+	{
+        if (game->map[y][x] == '1')
+            return (0);
+        return (1);
+    }
+    return (0);
+}
+
+void ft_hook(void *param)
+{
+    t_game *game = (t_game *)param;
+
+    if (mlx_is_key_down(game->win, MLX_KEY_ESCAPE))
+        mlx_close_window(game->win);
+    else if (mlx_is_key_down(game->win, MLX_KEY_W))
+	{
+        if (can_move_to_up(game) == 1)
+            game->player_pos->y -= PLAYER_MOVE;
+    }
+    else if (mlx_is_key_down(game->win, MLX_KEY_S))
+	{
+        if (can_move_to_down(game) == 1)
+            game->player_pos->y += PLAYER_MOVE;
+    }
+	else if (mlx_is_key_down(game->win, MLX_KEY_A))
+	{
+        if (can_move_to_left(game) == 1)
+            game->player_pos->x -= PLAYER_MOVE;
+    }
+    else if (mlx_is_key_down(game->win, MLX_KEY_D))
+	{
+        if (can_move_to_right(game) == 1)
+            game->player_pos->x += PLAYER_MOVE;
+	}
+	eares_drawing(game);
 	draw_map(game);
+	drawing_the_player(game);
 }

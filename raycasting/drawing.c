@@ -6,7 +6,7 @@
 /*   By: omakran <omakran@student.1337.ma >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 10:42:45 by omakran           #+#    #+#             */
-/*   Updated: 2023/11/16 11:07:38 by omakran          ###   ########.fr       */
+/*   Updated: 2023/11/17 12:00:54 by omakran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,25 @@
 int	ft_pixel(int r, int g, int b, int a)
 {
 	return (r << 24 | g << 16 | b << 8 | a);
+}
+
+void	eares_drawing(t_game *game)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (y < HEIGHT)
+	{
+		x = 0;
+		while (x < WIDTH)
+		{
+			if ((x > 0 && x < WIDTH) && (y > 0 && y < HEIGHT))
+				mlx_put_pixel(game->mini_map, x, y, ft_pixel(0, 0, 0, 255));
+			x++;
+		}
+		y++;
+	}
 }
 
 void	drawing(t_game *game)

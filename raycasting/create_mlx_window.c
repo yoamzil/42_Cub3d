@@ -6,7 +6,7 @@
 /*   By: omakran <omakran@student.1337.ma >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 17:53:47 by omakran           #+#    #+#             */
-/*   Updated: 2023/11/16 12:06:01 by omakran          ###   ########.fr       */
+/*   Updated: 2023/11/17 21:38:51 by omakran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,13 @@
 
 int	intialize_window(t_game *game)
 {
-	game->win = mlx_init(game->width * 50, game->height * 50, "cub3D", true);
+	game->win = mlx_init(WIDTH, HEIGHT, "cub3D", true);
 	if (!game->win)
 	{
 		ft_putstr_fd("Error Initializing MLX!.\n", 2);
 		exit(EXIT_FAILURE);
 	}
-	game->mini_map = mlx_new_image(game->win, \
-		game->width * 50, game->height * 50);
+	game->mini_map = mlx_new_image(game->win, WIDTH, HEIGHT);
 	if (!(game->mini_map))
 	{
 		ft_putstr_fd("Error Initializing MINI_MAP.\n", 2);
