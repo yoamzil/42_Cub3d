@@ -6,7 +6,7 @@
 /*   By: omakran <omakran@student.1337.ma >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:11:09 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/11/17 21:40:01 by omakran          ###   ########.fr       */
+/*   Updated: 2023/11/18 18:23:50 by omakran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 # define WIDTH 1800
 # define HEIGHT 1600
 # define SQUAR_SIZE 50
-# define SQUAR_SIZE_PLAYER 25
-# define PLAYER_MOVE 1
+# define SQUAR_SIZE_PLAYER 5
+# define PLAYER_MOVE 1.5
 # define PI 3.14159265
 # define FOV_ANGLE (60 * (PI / 180))
 

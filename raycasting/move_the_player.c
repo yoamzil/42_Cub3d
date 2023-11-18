@@ -6,7 +6,7 @@
 /*   By: omakran <omakran@student.1337.ma >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 16:21:01 by omakran           #+#    #+#             */
-/*   Updated: 2023/11/18 16:25:13 by omakran          ###   ########.fr       */
+/*   Updated: 2023/11/18 19:12:50 by omakran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	get_player_position(t_game *game)
 			if (game->map[i][j] == 'N' || game->map[i][j] == 'S' ||
 					game->map[i][j] == 'E' || game->map[i][j] == 'W')
 			{
-				game->player_pos->x = j * SQUAR_SIZE;
-				game->player_pos->y = i * SQUAR_SIZE;
+				game->player_pos->x = j * SQUAR_SIZE + (SQUAR_SIZE / 2);
+				game->player_pos->y = i * SQUAR_SIZE + (SQUAR_SIZE / 2);
 				break ;
 			}
 			j++;
@@ -64,56 +64,61 @@ void	drawing_the_player(t_game *game)
 
 int can_move_to_up(t_game *game)
 {
-    int x = game->player_pos->x / SQUAR_SIZE;
-    int y = game->player_pos->y / SQUAR_SIZE - PLAYER_MOVE;
+    double x = game->player_pos->x;
+    double y = game->player_pos->y - SQUAR_SIZE_PLAYER;
 
-    if (y >= 0 && y < HEIGHT / SQUAR_SIZE && x >= 0 && x < WIDTH / SQUAR_SIZE)
+    if (y >= 0 && y < HEIGHT && x >= 0 && x < WIDTH)
 	{
-        if (game->map[y][x] == '1') 
-            return (0); 
-        return (1);
+        if (game->map[((int)y) / SQUAR_SIZE][((int)x) / SQUAR_SIZE] != '1')
+		{
+			game->player_pos->x = x;
+			game->player_pos->y = y; 
+		}
     }
     return (0);
 }
 
 int can_move_to_down(t_game *game)
 {
-    int x = game->player_pos->x / SQUAR_SIZE;
-    int y = game->player_pos->y / SQUAR_SIZE + PLAYER_MOVE;
-
-    if (y >= 0 && y < HEIGHT / SQUAR_SIZE && x >= 0 && x < WIDTH / SQUAR_SIZE)
+	double x = game->player_pos->x;
+    double y = game->player_pos->y + SQUAR_SIZE_PLAYER;
+    if (y >= 0 && y < HEIGHT && x >= 0 && x < WIDTH)
 	{
-        if (game->map[y][x] == '1') 
-            return (0);
-        return (1);
+        if (game->map[((int)y) / SQUAR_SIZE][((int)x) / SQUAR_SIZE] != '1')
+		{
+			game->player_pos->x = x;
+			game->player_pos->y = y; 
+		}
     }
     return (0);
 }
 
 int can_move_to_right(t_game *game)
 {
-    int x = game->player_pos->x / SQUAR_SIZE + PLAYER_MOVE;
-    int y = game->player_pos->y / SQUAR_SIZE;
-
-    if (y >= 0 && y < HEIGHT / SQUAR_SIZE && x >= 0 && x < WIDTH / SQUAR_SIZE)
+	double x = game->player_pos->x + SQUAR_SIZE_PLAYER;
+    double y = game->player_pos->y;
+    if (y >= 0 && y < HEIGHT && x >= 0 && x < WIDTH)
 	{
-        if (game->map[y][x] == '1') 
-            return (0); 
-        return (1);
+        if (game->map[((int)y) / SQUAR_SIZE][((int)x) / SQUAR_SIZE] != '1')
+		{
+			game->player_pos->x = x;
+			game->player_pos->y = y; 
+		}
     }
     return (0);
 }
 
 int can_move_to_left(t_game *game)
 {
-    int x = game->player_pos->x / SQUAR_SIZE - PLAYER_MOVE;
-    int y = game->player_pos->y / SQUAR_SIZE;
-
-    if (y >= 0 && y < HEIGHT / SQUAR_SIZE && x >= 0 && x < WIDTH / SQUAR_SIZE)
+	double x = game->player_pos->x - SQUAR_SIZE_PLAYER;
+    double y = game->player_pos->y;
+    if (y >= 0 && y < HEIGHT && x >= 0 && x < WIDTH)
 	{
-        if (game->map[y][x] == '1')
-            return (0);
-        return (1);
+        if (game->map[((int)y) / SQUAR_SIZE][((int)x) / SQUAR_SIZE] != '1')
+		{
+			game->player_pos->x = x;
+			game->player_pos->y = y; 
+		}
     }
     return (0);
 }
@@ -125,25 +130,15 @@ void ft_hook(void *param)
     if (mlx_is_key_down(game->win, MLX_KEY_ESCAPE))
         mlx_close_window(game->win);
     else if (mlx_is_key_down(game->win, MLX_KEY_W))
-	{
-        if (can_move_to_up(game) == 1)
-            game->player_pos->y -= PLAYER_MOVE;
-    }
+        can_move_to_up(game);
     else if (mlx_is_key_down(game->win, MLX_KEY_S))
-	{
-        if (can_move_to_down(game) == 1)
-            game->player_pos->y += PLAYER_MOVE;
-    }
+   		can_move_to_down(game);
 	else if (mlx_is_key_down(game->win, MLX_KEY_A))
-	{
-        if (can_move_to_left(game) == 1)
-            game->player_pos->x -= PLAYER_MOVE;
-    }
+         can_move_to_left(game);
     else if (mlx_is_key_down(game->win, MLX_KEY_D))
-	{
-        if (can_move_to_right(game) == 1)
-            game->player_pos->x += PLAYER_MOVE;
-	}
+		can_move_to_right(game);
+		// else
+		// 	game->player_pos->x -= 1;
 	eares_drawing(game);
 	draw_map(game);
 	drawing_the_player(game);
