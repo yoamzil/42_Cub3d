@@ -6,7 +6,7 @@
 /*   By: omakran <omakran@student.1337.ma >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 16:21:01 by omakran           #+#    #+#             */
-/*   Updated: 2023/11/18 19:12:50 by omakran          ###   ########.fr       */
+/*   Updated: 2023/11/18 19:43:26 by omakran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,84 +62,24 @@ void	drawing_the_player(t_game *game)
 	}
 }
 
-int can_move_to_up(t_game *game)
+void	ft_hook(void *param)
 {
-    double x = game->player_pos->x;
-    double y = game->player_pos->y - SQUAR_SIZE_PLAYER;
+	t_game	*game;
 
-    if (y >= 0 && y < HEIGHT && x >= 0 && x < WIDTH)
-	{
-        if (game->map[((int)y) / SQUAR_SIZE][((int)x) / SQUAR_SIZE] != '1')
-		{
-			game->player_pos->x = x;
-			game->player_pos->y = y; 
-		}
-    }
-    return (0);
-}
-
-int can_move_to_down(t_game *game)
-{
-	double x = game->player_pos->x;
-    double y = game->player_pos->y + SQUAR_SIZE_PLAYER;
-    if (y >= 0 && y < HEIGHT && x >= 0 && x < WIDTH)
-	{
-        if (game->map[((int)y) / SQUAR_SIZE][((int)x) / SQUAR_SIZE] != '1')
-		{
-			game->player_pos->x = x;
-			game->player_pos->y = y; 
-		}
-    }
-    return (0);
-}
-
-int can_move_to_right(t_game *game)
-{
-	double x = game->player_pos->x + SQUAR_SIZE_PLAYER;
-    double y = game->player_pos->y;
-    if (y >= 0 && y < HEIGHT && x >= 0 && x < WIDTH)
-	{
-        if (game->map[((int)y) / SQUAR_SIZE][((int)x) / SQUAR_SIZE] != '1')
-		{
-			game->player_pos->x = x;
-			game->player_pos->y = y; 
-		}
-    }
-    return (0);
-}
-
-int can_move_to_left(t_game *game)
-{
-	double x = game->player_pos->x - SQUAR_SIZE_PLAYER;
-    double y = game->player_pos->y;
-    if (y >= 0 && y < HEIGHT && x >= 0 && x < WIDTH)
-	{
-        if (game->map[((int)y) / SQUAR_SIZE][((int)x) / SQUAR_SIZE] != '1')
-		{
-			game->player_pos->x = x;
-			game->player_pos->y = y; 
-		}
-    }
-    return (0);
-}
-
-void ft_hook(void *param)
-{
-    t_game *game = (t_game *)param;
-
-    if (mlx_is_key_down(game->win, MLX_KEY_ESCAPE))
-        mlx_close_window(game->win);
-    else if (mlx_is_key_down(game->win, MLX_KEY_W))
-        can_move_to_up(game);
-    else if (mlx_is_key_down(game->win, MLX_KEY_S))
-   		can_move_to_down(game);
+	game = (t_game *)param;
+	if (mlx_is_key_down(game->win, MLX_KEY_ESCAPE))
+		mlx_close_window(game->win);
+	else if (mlx_is_key_down(game->win, MLX_KEY_W))
+		can_move_to_up(game);
+	else if (mlx_is_key_down(game->win, MLX_KEY_S))
+		can_move_to_down(game);
 	else if (mlx_is_key_down(game->win, MLX_KEY_A))
-         can_move_to_left(game);
-    else if (mlx_is_key_down(game->win, MLX_KEY_D))
+		can_move_to_left(game);
+	else if (mlx_is_key_down(game->win, MLX_KEY_D))
 		can_move_to_right(game);
-		// else
-		// 	game->player_pos->x -= 1;
 	eares_drawing(game);
 	draw_map(game);
 	drawing_the_player(game);
 }
+// else
+// 	game->player_pos->x -= 1;

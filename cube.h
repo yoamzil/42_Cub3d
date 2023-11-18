@@ -6,7 +6,7 @@
 /*   By: omakran <omakran@student.1337.ma >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:11:09 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/11/18 18:23:50 by omakran          ###   ########.fr       */
+/*   Updated: 2023/11/18 19:41:13 by omakran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,11 @@
 # define HEIGHT 1600
 # define SQUAR_SIZE 50
 # define SQUAR_SIZE_PLAYER 5
-# define PLAYER_MOVE 1.5
+# define PLAYER_MOVE 1
 # define PI 3.14159265
-# define FOV_ANGLE (60 * (PI / 180))
+// # define FOV_ANGLE (60 * (PI / 180))
+
+/* ################## My Structs: ########################*/
 
 typedef struct s_player_x_y
 {
@@ -62,6 +64,10 @@ typedef struct s_game
 	t_player_x_y	*player_pos;
 }				t_game;
 
+/* ########################################################*/
+
+/* ################## Helpers Functions:  #########################*/
+
 int				is_valid_map(t_game *game, int i);
 int				is_valid_arg(char *arg);
 int				is_surrounded_by_walls(char **map, int i);
@@ -93,4 +99,14 @@ void			draw_map(t_game *game);
 void			drawing_the_player(t_game *game);
 void			get_player_position(t_game *game);
 
+/* #####################################################################*/
+
+/* ################## Function Of  Moves: ###############*/
+
+void			can_move_to_up(t_game *game);
+void			can_move_to_down(t_game *game);
+void			can_move_to_right(t_game *game);
+void			can_move_to_left(t_game *game);
+
+/* ######################################################*/
 #endif
