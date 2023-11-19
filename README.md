@@ -33,7 +33,7 @@ The game supports various events and functionalities, including:
 2. Navigate to the root directory and execute `make`:
 
     ```bash
-    cd 42_cub3D
+    cd 42_Cub3d
     make
     ```
 
