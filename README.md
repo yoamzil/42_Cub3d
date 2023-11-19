@@ -1,7 +1,7 @@
 # cub3D
 
 ## Collaborator
-**GitHub:** [Omakran]((https://github.com/thee-falcon))
+**GitHub:** [Omakran](https://github.com/thee-falcon)
 
 ## Overview
 
