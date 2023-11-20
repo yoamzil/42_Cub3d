@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_the_player.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omakran <omakran@student.1337.ma >         +#+  +:+       +#+        */
+/*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 16:21:01 by omakran           #+#    #+#             */
-/*   Updated: 2023/11/18 19:43:26 by omakran          ###   ########.fr       */
+/*   Updated: 2023/11/20 20:57:17 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ void	drawing_the_player(t_game *game)
 			if (game->map[j][i] == 'N' || game->map[j][i] == 'S' ||
 					game->map[j][i] == 'E' || game->map[j][i] == 'W')
 			{
-				draw_square(game, j * 20, i * 20, ft_pixel(255, 255, 255, 255));
 				draw_square_player(game, game->player_pos->y,
 					game->player_pos->x, ft_pixel(0, 255, 0, 255));
 				break ;
