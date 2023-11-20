@@ -6,11 +6,23 @@
 /*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 16:21:01 by omakran           #+#    #+#             */
-/*   Updated: 2023/11/20 20:57:17 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/11/20 21:40:19 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube.h"
+
+void	set_direction(t_game *game, char direction)
+{
+	if (direction == 'N')
+		game->player_pos->direction = 0;
+	else if (direction == 'S')
+		game->player_pos->direction = 180;
+	else if (direction == 'E')
+		game->player_pos->direction = 90;
+	else if (direction == 'W')
+		game->player_pos->direction = 270;
+}
 
 void	get_player_position(t_game *game)
 {
@@ -29,12 +41,15 @@ void	get_player_position(t_game *game)
 			{
 				game->player_pos->x = j * SQUAR_SIZE + (SQUAR_SIZE / 2);
 				game->player_pos->y = i * SQUAR_SIZE + (SQUAR_SIZE / 2);
+				set_direction(game, game->map[i][j]);
 				break ;
 			}
 			j++;
 		}
 		i++;
 	}
+	printf("x = %f, y = %f\n", game->player_pos->x, game->player_pos->y);
+	printf("direction = %d\n", game->player_pos->direction);
 }
 
 void	drawing_the_player(t_game *game)
@@ -76,7 +91,7 @@ void	ft_hook(void *param)
 		can_move_to_left(game);
 	else if (mlx_is_key_down(game->win, MLX_KEY_D))
 		can_move_to_right(game);
-	eares_drawing(game);
+	erase_drawing(game);
 	draw_map(game);
 	drawing_the_player(game);
 }

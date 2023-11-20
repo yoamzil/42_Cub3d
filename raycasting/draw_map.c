@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omakran <omakran@student.1337.ma >         +#+  +:+       +#+        */
+/*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 12:55:33 by omakran           #+#    #+#             */
-/*   Updated: 2023/11/18 18:54:39 by omakran          ###   ########.fr       */
+/*   Updated: 2023/11/20 21:37:11 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,9 @@ void	draw_map(t_game *game)
 				draw_square(game, j * 50, i * 50, ft_pixel(255, 255, 255, 255));
 			if (game->map[j][i] == 'N' || (game->map[j][i] == 'S') 
 				| (game->map[j][i] == 'E') || (game->map[j][i] == 'W'))
+			{
 				draw_square(game, j * 50, i * 50, ft_pixel(255, 255, 255, 255));
+			}
 			i++;
 		}
 		j++;
