@@ -6,7 +6,7 @@
 /*   By: omakran <omakran@student.1337.ma >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:11:09 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/11/21 13:11:50 by omakran          ###   ########.fr       */
+/*   Updated: 2023/11/22 19:09:42 by omakran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,8 @@ void			get_player_position(t_game *game);
 void			set_direction(t_game *game);
 float			to_radian(float nb);
 char			direction_of_player(t_game *game);
+void draw_vertical_line_in_player(t_game *game, int playerX, int playerY, int lineLength, int color);
+
 
 /* #####################################################################*/
 
