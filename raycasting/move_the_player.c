@@ -3,54 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   move_the_player.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: omakran <omakran@student.1337.ma >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 16:21:01 by omakran           #+#    #+#             */
-/*   Updated: 2023/11/20 21:40:19 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/11/22 13:52:30 by omakran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube.h"
-
-void	set_direction(t_game *game, char direction)
-{
-	if (direction == 'N')
-		game->player_pos->direction = 0;
-	else if (direction == 'S')
-		game->player_pos->direction = 180;
-	else if (direction == 'E')
-		game->player_pos->direction = 90;
-	else if (direction == 'W')
-		game->player_pos->direction = 270;
-}
-
-void	get_player_position(t_game *game)
-{
-	int	i;
-	int	j;
-
-	game->player_pos = malloc(sizeof(t_player_x_y));
-	i = 0;
-	while (game->map[i])
-	{
-		j = 0;
-		while (game->map[i][j])
-		{
-			if (game->map[i][j] == 'N' || game->map[i][j] == 'S' ||
-					game->map[i][j] == 'E' || game->map[i][j] == 'W')
-			{
-				game->player_pos->x = j * SQUAR_SIZE + (SQUAR_SIZE / 2);
-				game->player_pos->y = i * SQUAR_SIZE + (SQUAR_SIZE / 2);
-				set_direction(game, game->map[i][j]);
-				break ;
-			}
-			j++;
-		}
-		i++;
-	}
-	printf("x = %f, y = %f\n", game->player_pos->x, game->player_pos->y);
-	printf("direction = %d\n", game->player_pos->direction);
-}
 
 void	drawing_the_player(t_game *game)
 {
@@ -76,6 +36,27 @@ void	drawing_the_player(t_game *game)
 	}
 }
 
+float	normalize_angle(float angle )
+{
+	while (angle < 0)
+		angle += 2 * M_PI;
+	while (angle >= (2 * M_PI))
+		angle -= 2 * M_PI;
+	return (angle);
+}
+
+void	ft_rotate_player(t_game *game)
+{
+	game->player_pos->rotation_angle = \
+		normalize_angle(game->player_pos->rotation_angle);
+	if (mlx_is_key_down(game->win, MLX_KEY_LEFT))
+		game->player_pos->rotation_angle -= 0.1;
+	else if (mlx_is_key_down(game->win, MLX_KEY_RIGHT))
+		game->player_pos->rotation_angle += 0.1;
+	else 
+		return ;
+}
+
 void	ft_hook(void *param)
 {
 	t_game	*game;
@@ -91,6 +72,8 @@ void	ft_hook(void *param)
 		can_move_to_left(game);
 	else if (mlx_is_key_down(game->win, MLX_KEY_D))
 		can_move_to_right(game);
+	else
+		ft_rotate_player(game);
 	erase_drawing(game);
 	draw_map(game);
 	drawing_the_player(game);

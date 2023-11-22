@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: omakran <omakran@student.1337.ma >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:11:09 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/11/20 21:39:26 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/11/21 13:11:50 by omakran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,13 @@ typedef struct s_player_x_y
 	float	y;	
 	float	rotation_angle;
 	int		direction;
+	float	radians;
 }	t_player_x_y;
 
 typedef struct s_game
 {
 	char			**map;
+	char			direction;
 	int				width;
 	int				height;
 	int				start_position;
@@ -99,7 +101,9 @@ void			init_variables(t_game *game);
 void			draw_map(t_game *game);
 void			drawing_the_player(t_game *game);
 void			get_player_position(t_game *game);
-void			set_direction(t_game *game, char direction);
+void			set_direction(t_game *game);
+float			to_radian(float nb);
+char			direction_of_player(t_game *game);
 
 /* #####################################################################*/
 
