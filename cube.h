@@ -6,7 +6,7 @@
 /*   By: omakran <omakran@student.1337.ma >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:11:09 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/11/22 19:09:42 by omakran          ###   ########.fr       */
+/*   Updated: 2023/11/23 13:23:11 by omakran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,6 @@
 # define HEIGHT 1600
 # define SQUAR_SIZE 50
 # define SQUAR_SIZE_PLAYER 5
-# define PLAYER_MOVE 1
-# define PI 3.14159265
-// # define FOV_ANGLE (60 * (PI / 180))
 
 /* ################## My Structs: ########################*/
 
@@ -37,9 +34,26 @@ typedef struct s_player_x_y
 	float	x;	
 	float	y;	
 	float	rotation_angle;
-	int		direction;
 	float	radians;
+	float	fov_angle;
+	float	wall_strip_width;
+	float	num_rays;
+	int		direction;
 }	t_player_x_y;
+
+typedef struct s_ray_cast
+{
+	float	ray_angle;
+	float	wall_hit_x;
+	float	wall_hit_y;
+	float	distance;
+	int		was_hit_vertical;
+	int		is_ray_facing_up;
+	int		is_ray_facing_down;
+	int		is_ray_facing_left;
+	int		is_ray_facing_right;
+	int		wall_hit_content;
+}	t_ray_cast;
 
 typedef struct s_game
 {
@@ -104,8 +118,9 @@ void			get_player_position(t_game *game);
 void			set_direction(t_game *game);
 float			to_radian(float nb);
 char			direction_of_player(t_game *game);
-void draw_vertical_line_in_player(t_game *game, int playerX, int playerY, int lineLength, int color);
-
+// void			draw_vertical_line_in_player(t_game *game, int playerX, int playerY, int lineLength, int color);
+void			draw_line(mlx_image_t* img, float X0, float Y0, float X1, float Y1, int color);
+void			set_up(t_game *game);
 
 /* #####################################################################*/
 

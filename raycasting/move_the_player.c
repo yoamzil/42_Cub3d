@@ -6,7 +6,7 @@
 /*   By: omakran <omakran@student.1337.ma >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 16:21:01 by omakran           #+#    #+#             */
-/*   Updated: 2023/11/22 19:58:01 by omakran          ###   ########.fr       */
+/*   Updated: 2023/11/23 12:17:45 by omakran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	drawing_the_player(t_game *game)
 			{
 				draw_square_player(game, game->player_pos->y,
 					game->player_pos->x, ft_pixel(0, 255, 0, 255));
-			  
 				break ;
 			}
 			i++;
@@ -78,5 +77,6 @@ void	ft_hook(void *param)
 	erase_drawing(game);
 	draw_map(game);
 	drawing_the_player(game);
+	// draw_vertical_line_in_player(game, game->player_pos->x, game->player_pos->y, 10, 255);
+	draw_line(game->mini_map, game->player_pos->x, game->player_pos->y, game->player_pos->x + 60, game->player_pos->y + 60, 255);
 }
-

@@ -6,7 +6,7 @@
 /*   By: omakran <omakran@student.1337.ma >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 12:55:33 by omakran           #+#    #+#             */
-/*   Updated: 2023/11/22 19:16:49 by omakran          ###   ########.fr       */
+/*   Updated: 2023/11/23 12:06:15 by omakran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,37 +33,13 @@ void	draw_square(t_game *game, int x, int y, int __unused color)
 	}
 }
 
-//   void draw_line(mlx_image_t* img, float X0, float Y0, float X1, float Y1, int color)
-// { 
-//     // calculate dx & dy 
-//     float dx = X1 - X0; 
-//     float dy = Y1 - Y0; 
-//     // calculate steps required for generating pixels 
-//     int steps = fabs(dx) > fabs(dy) ? fabs(dx) : fabs(dy); 
-
-//     // calculate increment in x & y for each steps 
-//     float Xinc = dx / (float)steps; 
-//     float Yinc = dy / (float)steps; 
-
-//     // Put pixel for each step 
-//     float X = X0; 
-//     float Y = Y0; 
-//     for (int i = 0; i <= steps; i++) { 
-//         mlx_put_pixel(img, X, Y,color); 
-//         if(img == NULL)
-//             break;// put pixel at (X,Y) 
-//         X += Xinc; // increment in x at each step 
-//         Y += Yinc; // increment in y at each step 
-//     } 
-// }
-
-// void draw_line_in_player(t_game *game, int playerX, int playerY, int lineLength, int color)
+// void draw_vertical_line_in_player(t_game *game, int playerX, int playerY, int lineLength, int color)
 // {
 //     // Calculate the start and end points of the line within the player square
-//     int startX = playerX - lineLength / 2;
-//     int endX = playerX + lineLength / 2;
+//     int startX = playerX;
+//     int endX = playerX;
 //     int startY = playerY;
-//     int endY = playerY;
+//     int endY = playerY + lineLength;
 
 //     // DDA Algorithm
 //     int dx = endX - startX;
@@ -78,7 +54,7 @@ void	draw_square(t_game *game, int x, int y, int __unused color)
 //     for (int i = 0; i <= steps; i++)
 //     {
 //         // Plot the point on the player
-//         mlx_put_pixel(game->mini_map, round(x), round(y), color);
+//         mlx_put_pixel(game->mini_map, round(x + (SQUAR_SIZE_PLAYER / 2)), round(y + (SQUAR_SIZE_PLAYER / 2)), color);
 
 //         // Increment the coordinates using DDA
 //         x += xIncrement;
@@ -86,34 +62,30 @@ void	draw_square(t_game *game, int x, int y, int __unused color)
 //     }
 // }
 
-void draw_vertical_line_in_player(t_game *game, int playerX, int playerY, int lineLength, int color)
-{
-    // Calculate the start and end points of the line within the player square
-    int startX = playerX;
-    int endX = playerX;
-    int startY = playerY;
-    int endY = playerY + lineLength;
+void	draw_line(mlx_image_t* img, float X0, float Y0, float X1, float Y1, int color)
+{ 
+    // calculate dx & dy 
+    float dx = X1 - X0; 
+    float dy = Y1 - Y0; 
+    // calculate steps required for generating pixels 
+    int steps = fabs(dx) > fabs(dy) ? fabs(dx) : fabs(dy); 
 
-    // DDA Algorithm
-    int dx = endX - startX;
-    int dy = endY - startY;
-    int steps = abs(dx) > abs(dy) ? abs(dx) : abs(dy);
-    float xIncrement = (float)dx / steps;
-    float yIncrement = (float)dy / steps;
-    float x = startX;
-    float y = startY;
+    // calculate increment in x & y for each steps 
+    float Xinc = dx / (float)steps; 
+    float Yinc = dy / (float)steps; 
 
-    // Draw the line within the specified range
-    for (int i = 0; i <= steps; i++)
-    {
-        // Plot the point on the player
-        mlx_put_pixel(game->mini_map, round(x + (SQUAR_SIZE_PLAYER / 2)), round(y + (SQUAR_SIZE_PLAYER / 2)), color);
-
-        // Increment the coordinates using DDA
-        x += xIncrement;
-        y += yIncrement;
-    }
+    // Put pixel for each step 
+    float X = X0; 
+    float Y = Y0; 
+    for (int i = 0; i <= steps; i++) { 
+        mlx_put_pixel(img, X, Y,color); 
+        if(img == NULL)
+            break;// put pixel at (X,Y) 
+        X += Xinc; // increment in x at each step 
+        Y += Yinc; // increment in y at each step 
+    } 
 }
+
 
 void	draw_square_player(t_game *game, int x, int y, int __unused color)
 {

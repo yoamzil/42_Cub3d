@@ -6,7 +6,7 @@
 /*   By: omakran <omakran@student.1337.ma >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 17:53:47 by omakran           #+#    #+#             */
-/*   Updated: 2023/11/22 19:35:28 by omakran          ###   ########.fr       */
+/*   Updated: 2023/11/23 12:54:45 by omakran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	start(t_game *game)
 {
 	intialize_window(game);
 	get_player_position(game);
+	set_up(game);
 	drawing_the_player(game);
 	mlx_loop_hook(game->win, ft_hook, game);
 	mlx_loop(game->win);
