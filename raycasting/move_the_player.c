@@ -6,7 +6,7 @@
 /*   By: omakran <omakran@student.1337.ma >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 16:21:01 by omakran           #+#    #+#             */
-/*   Updated: 2023/11/23 12:17:45 by omakran          ###   ########.fr       */
+/*   Updated: 2023/11/24 19:45:39 by omakran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ void	ft_rotate_player(t_game *game)
 	game->player_pos->rotation_angle = \
 		normalize_angle(game->player_pos->rotation_angle);
 	if (mlx_is_key_down(game->win, MLX_KEY_LEFT))
-		game->player_pos->rotation_angle -= 1;
+		game->player_pos->rotation_angle -= ((float) 1 / 10);
 	else if (mlx_is_key_down(game->win, MLX_KEY_RIGHT))
-		game->player_pos->rotation_angle += 1;
+		game->player_pos->rotation_angle += ((float) 1 / 10);
 	else 
 		return ;
 }
@@ -60,23 +60,25 @@ void	ft_rotate_player(t_game *game)
 void	ft_hook(void *param)
 {
 	t_game	*game;
+    int        new_x;
+    int        new_y;
 
-	game = (t_game *)param;
+    game = (t_game *)param;
 	if (mlx_is_key_down(game->win, MLX_KEY_ESCAPE))
 		mlx_close_window(game->win);
-	else if (mlx_is_key_down(game->win, MLX_KEY_W))
-		can_move_to_up(game);
-	else if (mlx_is_key_down(game->win, MLX_KEY_S))
-		can_move_to_down(game);
-	else if (mlx_is_key_down(game->win, MLX_KEY_A))
-		can_move_to_left(game);
-	else if (mlx_is_key_down(game->win, MLX_KEY_D))
-		can_move_to_right(game);
+    if (mlx_is_key_down(game->win, MLX_KEY_W))
+        get_cord_to_move(game, &new_x, &new_y, MLX_KEY_W);
+    if (mlx_is_key_down(game->win, MLX_KEY_S))
+        get_cord_to_move(game, &new_x, &new_y, MLX_KEY_S);
+    if (mlx_is_key_down(game->win, MLX_KEY_D))
+        get_cord_to_move(game, &new_x, &new_y, MLX_KEY_D);
+    if (mlx_is_key_down(game->win, MLX_KEY_A))
+        get_cord_to_move(game, &new_x, &new_y, MLX_KEY_A);
 	else
 		ft_rotate_player(game);
 	erase_drawing(game);
 	draw_map(game);
 	drawing_the_player(game);
 	// draw_vertical_line_in_player(game, game->player_pos->x, game->player_pos->y, 10, 255);
-	draw_line(game->mini_map, game->player_pos->x, game->player_pos->y, game->player_pos->x + 60, game->player_pos->y + 60, 255);
+	draw_line(game);
 }

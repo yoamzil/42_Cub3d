@@ -6,7 +6,7 @@
 /*   By: omakran <omakran@student.1337.ma >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:11:09 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/11/23 13:23:11 by omakran          ###   ########.fr       */
+/*   Updated: 2023/11/24 19:45:04 by omakran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,13 +119,14 @@ void			set_direction(t_game *game);
 float			to_radian(float nb);
 char			direction_of_player(t_game *game);
 // void			draw_vertical_line_in_player(t_game *game, int playerX, int playerY, int lineLength, int color);
-void			draw_line(mlx_image_t* img, float X0, float Y0, float X1, float Y1, int color);
+void			draw_line(t_game *game);
 void			set_up(t_game *game);
 
 /* #####################################################################*/
 
 /* ################## Function Of  Moves: ###############*/
 
+void    		get_cord_to_move(t_game *game, int *new_x, int *new_y, int key);
 void			can_move_to_up(t_game *game);
 void			can_move_to_down(t_game *game);
 void			can_move_to_right(t_game *game);
