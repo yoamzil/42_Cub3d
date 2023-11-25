@@ -6,7 +6,7 @@
 /*   By: omakran <omakran@student.1337.ma >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 16:21:01 by omakran           #+#    #+#             */
-/*   Updated: 2023/11/24 19:45:39 by omakran          ###   ########.fr       */
+/*   Updated: 2023/11/25 20:50:20 by omakran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,25 +60,22 @@ void	ft_rotate_player(t_game *game)
 void	ft_hook(void *param)
 {
 	t_game	*game;
-    int        new_x;
-    int        new_y;
 
     game = (t_game *)param;
 	if (mlx_is_key_down(game->win, MLX_KEY_ESCAPE))
 		mlx_close_window(game->win);
     if (mlx_is_key_down(game->win, MLX_KEY_W))
-        get_cord_to_move(game, &new_x, &new_y, MLX_KEY_W);
+        movement(game, MLX_KEY_W);
     if (mlx_is_key_down(game->win, MLX_KEY_S))
-        get_cord_to_move(game, &new_x, &new_y, MLX_KEY_S);
+        movement(game, MLX_KEY_S);
     if (mlx_is_key_down(game->win, MLX_KEY_D))
-        get_cord_to_move(game, &new_x, &new_y, MLX_KEY_D);
+        movement(game, MLX_KEY_D);
     if (mlx_is_key_down(game->win, MLX_KEY_A))
-        get_cord_to_move(game, &new_x, &new_y, MLX_KEY_A);
+        movement(game, MLX_KEY_A);
 	else
 		ft_rotate_player(game);
 	erase_drawing(game);
 	draw_map(game);
 	drawing_the_player(game);
-	// draw_vertical_line_in_player(game, game->player_pos->x, game->player_pos->y, 10, 255);
-	draw_line(game);
+	// draw_line(game);
 }
