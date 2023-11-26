@@ -40,8 +40,8 @@ char	direction_of_player(t_game *game)
 		j = 0;
 		while (j < game->width)
 		{
-			if (game->map[i][j] == 'N' || game->map[i][j] == 'S' ||
-					game->map[i][j] == 'E' || game->map[i][j] == 'W')
+			if (game->map[i][j] == 'N' || game->map[i][j] == 'S'
+				|| game->map[i][j] == 'E' || game->map[i][j] == 'W')
 			{
 				game->direction = game->map[i][j];
 				break ;
@@ -73,6 +73,6 @@ void	get_player_position(t_game *game)
 		break ;
 	}
 	game->player_pos->y = (float)(i * SQUAR_SIZE + (SQUAR_SIZE / 2));
-	game->player_pos->x = (float)(((ft_strchr(game->map[i], dir)) - \
-		game->map[i]) * SQUAR_SIZE + (SQUAR_SIZE / 2));
+	game->player_pos->x = (float)(((ft_strchr(game->map[i], dir))
+				- game->map[i]) * SQUAR_SIZE + (SQUAR_SIZE / 2));
 }

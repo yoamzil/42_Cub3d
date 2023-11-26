@@ -23,6 +23,7 @@ SRCS		=	main.c \
 				raycasting/move_the_player.c \
 				raycasting/the_moves.c \
 				raycasting/player_calculation.c\
+				raycasting/can_move_to.c\
 				get_next_line/get_next_line.c \
 				get_next_line/get_next_line_utils.c \
 				libft/ft_atoi.c \

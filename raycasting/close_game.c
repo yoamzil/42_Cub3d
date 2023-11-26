@@ -15,6 +15,6 @@
 int	close_game(void *param)
 {
 	param = NULL;
-	exit (0);
+	exit(0);
 	return (0);
 }
