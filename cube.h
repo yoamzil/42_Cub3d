@@ -6,7 +6,7 @@
 /*   By: omakran <omakran@student.1337.ma >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:11:09 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/11/26 17:22:22 by omakran          ###   ########.fr       */
+/*   Updated: 2023/11/26 19:46:20 by omakran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # define SQUAR_SIZE_PLAYER 5
 # define FALSE 1
 # define TRUE 0
+# define FOV 60
 
 /* ################## My Structs: ########################*/
 
@@ -78,6 +79,7 @@ typedef struct s_game
 	char			*ea;
 	char			*f;
 	char			*c;
+	float 			rayangle;
 	int				no_count;
 	int				so_count;
 	int				we_count;
@@ -138,4 +140,13 @@ void				can_move_to_right(t_game *game, int key);
 void				can_move_to_left(t_game *game, int key);
 
 /* ######################################################*/
+
+/* ################## Raycasting: ###################################*/
+
+void				raycast(t_game *game);
+void				draw_line(t_game *game);
+void				DDA(t_game *map, int x0, int y0, int x1, int y1);
+
+/* ###################################################################*/
+
 #endif

@@ -6,7 +6,7 @@
 /*   By: omakran <omakran@student.1337.ma >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 13:02:16 by omakran           #+#    #+#             */
-/*   Updated: 2023/11/23 11:56:47 by omakran          ###   ########.fr       */
+/*   Updated: 2023/11/26 20:01:48 by omakran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ float	to_radian(float nb)
 void	set_direction(t_game *game)
 {
 	if (game->direction == 'N')
-		game->player_pos->rotation_angle = to_radian(0);
+		game->player_pos->rotation_angle = 3* M_PI / 2;
 	else if (game->direction == 'S')
-		game->player_pos->rotation_angle = to_radian(180);
+		game->player_pos->rotation_angle = M_PI / 2;
 	else if (game->direction == 'E')
-		game->player_pos->rotation_angle = to_radian(90);
+		game->player_pos->rotation_angle = 0;
 	else if (game->direction == 'W')
-		game->player_pos->rotation_angle = to_radian(270);
+		game->player_pos->rotation_angle = 2 * M_PI;
 }
 
 char	direction_of_player(t_game *game)
