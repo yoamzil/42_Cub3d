@@ -6,7 +6,7 @@
 /*   By: omakran <omakran@student.1337.ma >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:11:09 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/11/26 19:46:20 by omakran          ###   ########.fr       */
+/*   Updated: 2023/11/29 15:45:02 by omakran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <stdio.h>
 # include <unistd.h>
 
-# define TILE_SIZE 30
+# define TILE_SIZE 50
 # define WIDTH 1800
 # define HEIGHT 1600
 # define SQUAR_SIZE 50
@@ -30,7 +30,29 @@
 # define TRUE 0
 # define FOV 60
 
-/* ################## My Structs: ########################*/
+/*######################################################*/
+/*                    My Structs:						*/
+/*######################################################*/
+
+typedef struct s_horizontal
+{
+	float	x_intercept;
+	float	y_intercept;
+	float	x_hori;
+	float	y_hori;
+	float	x_step;
+	float	y_step;
+}				t_hori;
+
+typedef struct s_vertical
+{
+	float	x_intercept;
+	float	y_intercept;
+	float	x_ver;
+	float	y_ver;
+	float	x_step;
+	float	y_step;
+}				t_ver;
 
 typedef struct s_player_x_y
 {
@@ -87,11 +109,13 @@ typedef struct s_game
 	int				f_count;
 	int				c_count;
 	t_player_x_y	*player_pos;
+	t_hori			*hori;
+	t_ver			*ver;
 }					t_game;
 
-/* ########################################################*/
-
-/* ################## Helpers Functions:  #########################*/
+/* ################################################################*/
+/*						Helpers Functions:					       */
+/* ################################################################*/
 
 int					is_valid_map(t_game *game, int i);
 int					is_valid_arg(char *arg);
@@ -130,8 +154,8 @@ void				draw_line(t_game *game);
 void				set_up(t_game *game);
 
 /* #####################################################################*/
-
-/* ################## Function Of  Moves: ###############*/
+/*						Function Of  Moves:								*/
+/* #####################################################################*/
 
 void				movement(t_game *game, int key);
 void				can_move_to_up(t_game *game, int key);
@@ -139,14 +163,18 @@ void				can_move_to_down(t_game *game, int key);
 void				can_move_to_right(t_game *game, int key);
 void				can_move_to_left(t_game *game, int key);
 
-/* ######################################################*/
+/* ##################################################################*/
+/*					     Raycasting:								 */
+/* ##################################################################*/
 
-/* ################## Raycasting: ###################################*/
-
-void				raycast(t_game *game);
+// void				raycast(t_game *game);
 void				draw_line(t_game *game);
 void				DDA(t_game *map, int x0, int y0, int x1, int y1);
-
-/* ###################################################################*/
+void				horizontal_steps(t_game *game);
+void				vertical_steps(t_game *game);
+void				get_vertical(t_game *game, double *wall);
+void				get_horizontal(t_game *game, double *wall);
+int					check_if_hit_wall(t_game *game, double x, double y);
+void				get_short_dist(float *x, float *y, t_game *game);
 
 #endif

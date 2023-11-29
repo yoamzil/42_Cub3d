@@ -6,7 +6,7 @@
 /*   By: omakran <omakran@student.1337.ma >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 16:21:01 by omakran           #+#    #+#             */
-/*   Updated: 2023/11/26 19:58:56 by omakran          ###   ########.fr       */
+/*   Updated: 2023/11/29 18:17:05 by omakran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,30 +18,30 @@ uint32_t color(int r, int g, int b, int a){
 // DDA Function for line generation 
 void DDA(t_game *map, int X0, int Y0, int X1, int Y1) 
 { 
-    // calculate dx & dy 
     int dx = X1 - X0; 
     int dy = Y1 - Y0; 
-  
-    // calculate steps required for generating pixels 
     int steps = abs(dx) > abs(dy) ? abs(dx) : abs(dy); 
-  
-    // calculate increment in x & y for each steps 
     float Xinc = dx / (float)steps; 
     float Yinc = dy / (float)steps; 
-  
-    // Put pixel for each step 
+
     float X = X0; 
     float Y = Y0; 
-    for (int i = 0; i <= steps; i++) { 
-        mlx_put_pixel(map->mini_map,round(X), round(Y), color(255,0,0,255)); // put pixel at (X,Y) 
-        X += Xinc; // increment in x at each step 
-        Y += Yinc; // increment in y at each step 
-    } 
+	
+    for (int i = 0; i <= steps; i++) 
+	{
+			if ((round(X) >= 0 && round(X) < WIDTH) && (round(Y) >= 0 && round(Y) < HEIGHT))
+	        	mlx_put_pixel(map->mini_map,round(X), round(Y), color(255,0,0,255)); // put pixel at (X,Y) 
+        X += Xinc; // increment in x at each step
+        Y += Yinc; // increment in y at each step
+    }
 }
 void	drawing_the_player(t_game *game)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
+	float	x;
+	float	y;
+	int		z;
 
 	j = 0;
 	while (j < game->height)
@@ -60,15 +60,15 @@ void	drawing_the_player(t_game *game)
 		}
 		j++;
 	}
-	int z = 0;
+	z = 0;
 	game->rayangle = game->player_pos->rotation_angle - to_radian(FOV / 2);
-	float x;
-	float y;
-	while (z < WIDTH){
-	// 	puts("hana");
-		x= cos(game->rayangle ) * 50;
-		y= sin(game->rayangle ) * 50 ;
-		DDA(game, game->player_pos->x, game->player_pos->y,  x + game->player_pos->x , y+game->player_pos->y);
+	while (z < WIDTH)
+	{
+		x = cos(game->rayangle) * WIDTH;
+		y = sin(game->rayangle) * WIDTH;
+		// get_horizontal(game, wall);
+		// get_vertical(game, wall);
+		DDA(game, game->player_pos->x, game->player_pos->y, game->player_pos->x + x, game->player_pos->y + y);
 		game->rayangle += to_radian(FOV) / WIDTH;
 		z++;
 	}

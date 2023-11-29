@@ -6,7 +6,7 @@
 /*   By: omakran <omakran@student.1337.ma >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:11:00 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/11/26 18:33:47 by omakran          ###   ########.fr       */
+/*   Updated: 2023/11/27 17:24:31 by omakran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,9 @@ void	store_ceiling(t_game *game, char **map, int i)
 void	set_up(t_game *game)
 {
 	game->player_pos->fov_angle = 60 * (M_PI / 180); // TO CONVERT THE ANGLE TO RADIANS
-	game->player_pos->wall_strip_width = 1;
+	game->player_pos->wall_strip_width = 30;
 	game->player_pos->num_rays = WIDTH / game->player_pos->wall_strip_width;
+	
 }
 
 int	main(int ac, char **av)
