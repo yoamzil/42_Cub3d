@@ -6,42 +6,11 @@
 /*   By: omakran <omakran@student.1337.ma >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 12:55:37 by omakran           #+#    #+#             */
-/*   Updated: 2023/11/29 19:08:36 by omakran          ###   ########.fr       */
+/*   Updated: 2023/11/30 22:11:41 by omakran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube.h"
-
-// double calculate_distance(double x1, double y1, double x2, double y2)
-// {
-//     return sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2));
-// }
-
-// typedef struct
-// {
-// 	float x;
-// 	float y;
-// } t_vec;
-
-// void get_short_dist(float *x, float *y, t_game *game)
-// {
-// 	double hor[2];
-// 	double ver[2];
-// 	get_horizontal(game, hor);
-// 	get_vertical(game, ver);
-// 	double i = calculate_distance(game->player_pos->x, game->player_pos->y, hor[0], hor[1]);
-// 	double j = calculate_distance(game->player_pos->x, game->player_pos->y, ver[0], ver[1]);
-// 	if (i < j)
-// 	{
-// 		*x = hor[0];
-// 		*y = hor[1];
-// 	}
-// 	else
-// 	{
-// 		*x = ver[0];
-// 		*y = ver[1];
-// 	}
-// }
 
 int check_if_hit_wall(t_game *game, double x, double y)
 {
@@ -59,47 +28,87 @@ int check_if_hit_wall(t_game *game, double x, double y)
 	return (1); 
 }
 
-void get_horizontal(t_game *game, double *wall)
+t_game	*get_wall_height(t_game *game)
 {
-	horizontal_steps(game);
-	while (true)
-	{
-		if (game->hori->x_hori >= (SQUAR_SIZE * WIDTH) || game->hori->x_hori < 0 || game->hori->y_hori >= (SQUAR_SIZE * HEIGHT) || (game->hori->y_hori < 0))
-		{
-			wall[0] = -1;
-			wall[1] = -1;
-			break;
-		}
-		if (check_if_hit_wall(game, game->hori->x_hori, game->hori->y_hori))
-		{
-			wall[0] = game->hori->x_hori;
-			wall[1] = game->hori->y_hori;
-			break;
-		}
-		game->hori->x_hori += game->hori->x_step;
-		game->hori->y_hori += game->hori->y_step;
-	}
+	game->player_pos->wall_height = (SQUAR_SIZE / game->player_pos->distance) * (WIDTH / 2) / tan(game->player_pos->fov_angle / 2);
+	if (game->player_pos->wall_height > HEIGHT)
+		game->player_pos->wall_height = HEIGHT;
+	game->player_pos->ystart = (HEIGHT / 2) - (game->player_pos->wall_height / 2);
+	game->player_pos->yend = (HEIGHT / 2) + (game->player_pos->wall_height / 2);
+	return (game);
 }
 
-void get_vertical(t_game *game, double *wall)
+t_game	*the_closest_point(t_game *game)
 {
-	vertical_steps(game);
-	while (true)
+	if (game->player_pos->dist_vert > game->player_pos->dist_hori)
 	{
-		if (game->ver->x_ver >= (SQUAR_SIZE * WIDTH) || game->ver->x_ver < 0 || game->ver->y_ver >= (SQUAR_SIZE * HEIGHT) || game->ver->y_ver < 0)
-		{
-			wall[0] = -1;
-			wall[1] = -1;
-			break;
-		}
-		if (check_if_hit_wall(game, game->ver->x_ver, game->ver->y_ver))
-		{
-			wall[0] = game->ver->x_ver;
-			wall[1] = game->ver->y_ver;
-			break;
-		}
-		game->ver->x_ver += game->ver->x_step;
-		game->ver->y_ver += game->ver->y_step;
+		game->player_pos->x_step = game->hori->x_hori;
+		game->player_pos->y_step = game->hori->y_hori;
+		game->player_pos->distance = game->player_pos->dist_hori;
+		game->hori->is_hori = 1;
+		game->ver->is_ver = 0;
 	}
+	else 
+	{
+		game->player_pos->x_step = game->ver->x_ver;
+		game->player_pos->y_step = game->ver->y_ver;
+		game->player_pos->distance = game->player_pos->dist_vert;
+		game->hori->is_hori = 0;
+		game->ver->is_ver = 1;
+	}
+	return (game);
 }
 
+float	get_distance(float x_1, float y_1, float x_2, float y_2)
+{
+	return (sqrt((x_2 - x_1) * (x_2 - x_1) + (y_2 - y_1) * (y_2 - y_1)));
+}
+t_game	*valid_distance(t_game *game, float ray_angle)
+{
+	float	angle;
+
+	angle = normalize_angle(ray_angle);
+	horizontal_steps(game, ray_angle);
+	vertical_steps(game, ray_angle);
+	game->player_pos->dist_vert = get_distance(game->player_pos->x, game->player_pos->y, game->player_pos->x_step, game->player_pos->y_step);
+	game->player_pos->dist_hori = get_distance(game->player_pos->x, game->player_pos->y, game->player_pos->x_step, game->player_pos->y_step);
+	game = the_closest_point(game);
+	game->player_pos->distance = game->player_pos->distance * cos(ray_angle - game->player_pos->rotation_angle);
+	return (game);
+}
+void	casting_the_rays(t_game *game, float ray_angle, int id)
+{
+	game = valid_distance(game,  ray_angle);
+	game = get_wall_height(game);
+	if (game->ver->is_ver == 1)
+		game->x_tx = (int)game->player_pos->y_step % SQUAR_SIZE;
+	else
+		game->x_tx = (int)game->player_pos->x_step % SQUAR_SIZE;
+	if (game->player_pos->dist_vert > game->player_pos->dist_hori)
+	{
+		if (game->cast->is_ray_facing_up == 1)
+			draw_it(game, game->x_tx, game->textrs->no_t, id);
+		else
+			draw_it(game, game->x_tx, game->textrs->so_t, id);
+	}
+	else
+	{
+		if (game->cast->is_ray_facing_left == 1)
+			draw_it(game, game->x_tx, game->textrs->we_t, id);
+		else
+			draw_it(game, game->x_tx, game->textrs->ea_t, id);
+	}
+}
+void	raycast(t_game *game)
+{
+	int	id;
+
+	id = 0;
+	game->rayangle = normalize_angle(game->player_pos->rotation_angle - (FOV / 2));
+	while (id < game->player_pos->num_rays)
+	{
+		casting_the_rays(game, game->rayangle, id);
+		game->rayangle += normalize_angle(FOV / game->player_pos->num_rays);
+		id++;
+	}
+}

@@ -6,7 +6,7 @@
 /*   By: omakran <omakran@student.1337.ma >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:11:00 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/11/27 17:24:31 by omakran          ###   ########.fr       */
+/*   Updated: 2023/11/30 23:58:12 by omakran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,30 +68,59 @@ void	set_up(t_game *game)
 	game->player_pos->num_rays = WIDTH / game->player_pos->wall_strip_width;
 	
 }
+t_game	*init_data(t_game *game)
+{
+
+	game = (t_game *)malloc(sizeof(t_game));
+	if (!game)
+		return (NULL);
+	game->player_pos = (t_player_x_y *)malloc(sizeof(t_player_x_y));
+
+	if (!game->player_pos)
+		return (NULL);
+	game->hori = (t_hori *)malloc(sizeof(t_hori));
+	if (!game->hori)
+		return (NULL);
+	game->cast = (t_ray_cast *)malloc(sizeof(t_ray_cast));
+	if (!game->cast)
+		return (NULL);
+	game->ver = (t_ver *)malloc(sizeof(t_ver));
+	if (!game->ver)
+		return (NULL);
+	game->textrs = (t_textrs *)malloc(sizeof(t_textrs));
+	if (!game->textrs)
+		return (NULL);
+	game->player_pos->fov_angle = to_radian(60);
+	return (game);
+}
 
 int	main(int ac, char **av)
 {
-	t_game	game;
+	t_game	*game;
 	int		i;
 	int		row;
 
-	ft_bzero(&game, sizeof(t_game));
+	game = NULL;
+	// ft_bzero(game, sizeof(t_game));
+	game = init_data(game);
+	// 	printf("%p\n", game->player_pos);
+	// exit(1);
 	i = 6;
 	row = 0;
 	if (ac == 2)
 	{
-		game.file = read_map(av[1]);
-		if (!game.file)
+		game->file = read_map(av[1]);
+		if (!game->file)
 			error();
-		while (game.file[row])
+		while (game->file[row])
 			row++;
-		if (game.file[i] && row > 6 && is_valid_map(&game, i)
+		if (game->file[i] && row > 6 && is_valid_map(game, i)
 			&& is_valid_arg(av[1]))
 		{
-			store_textures(&game, game.file);
+			store_textures(game, game->file);
 			has_right_rgb(game);
-			init_variables(&game);
-			start(&game);
+			init_variables(game);
+			start(game);
 		}
 		else
 			error();

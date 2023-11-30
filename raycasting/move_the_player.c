@@ -6,7 +6,7 @@
 /*   By: omakran <omakran@student.1337.ma >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 16:21:01 by omakran           #+#    #+#             */
-/*   Updated: 2023/11/29 18:17:05 by omakran          ###   ########.fr       */
+/*   Updated: 2023/11/30 22:18:07 by omakran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,4 @@ void	ft_hook(void *param)
 	else
 		ft_rotate_player(game);
 	erase_drawing(game);
-	draw_map(game);
-	drawing_the_player(game);
-	// draw_line(game);
 }
