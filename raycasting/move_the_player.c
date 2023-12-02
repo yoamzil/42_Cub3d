@@ -6,7 +6,7 @@
 /*   By: omakran <omakran@student.1337.ma >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 16:21:01 by omakran           #+#    #+#             */
-/*   Updated: 2023/11/30 22:18:07 by omakran          ###   ########.fr       */
+/*   Updated: 2023/12/02 23:55:31 by omakran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@ int abs(int n) { return ((n > 0) ? n : (n * (-1))); }
 uint32_t color(int r, int g, int b, int a){
 	return (r << 24 | g << 16 | b << 8 | a);
 }
-// DDA Function for line generation 
+
 void DDA(t_game *map, int X0, int Y0, int X1, int Y1) 
 { 
-    int dx = X1 - X0; 
-    int dy = Y1 - Y0; 
-    int steps = abs(dx) > abs(dy) ? abs(dx) : abs(dy); 
-    float Xinc = dx / (float)steps; 
-    float Yinc = dy / (float)steps; 
+    float dx = X1 - X0; 
+    float dy = Y1 - Y0; 
+    float steps = fabs(dx) > fabs(dy) ? fabs(dx) : fabs(dy); 
+    float Xinc = (dx / (float)steps); 
+    float Yinc = (dy / (float)steps) ;
 
     float X = X0; 
     float Y = Y0; 
@@ -35,6 +35,7 @@ void DDA(t_game *map, int X0, int Y0, int X1, int Y1)
         Y += Yinc; // increment in y at each step
     }
 }
+
 void	drawing_the_player(t_game *game)
 {
 	int		i;
@@ -66,8 +67,6 @@ void	drawing_the_player(t_game *game)
 	{
 		x = cos(game->rayangle) * WIDTH;
 		y = sin(game->rayangle) * WIDTH;
-		// get_horizontal(game, wall);
-		// get_vertical(game, wall);
 		DDA(game, game->player_pos->x, game->player_pos->y, game->player_pos->x + x, game->player_pos->y + y);
 		game->rayangle += to_radian(FOV) / WIDTH;
 		z++;
@@ -77,10 +76,9 @@ void	drawing_the_player(t_game *game)
 
 float	normalize_angle(float angle)
 {
-	while (angle < 0)
-		angle += 2 * M_PI;
-	while (angle >= (2 * M_PI))
-		angle -= 2 * M_PI;
+	angle = fmod(angle, 2 * M_PI);
+	if (angle < 0)
+		angle += (2 * M_PI);
 	return (angle);
 }
 
@@ -114,4 +112,8 @@ void	ft_hook(void *param)
 	else
 		ft_rotate_player(game);
 	erase_drawing(game);
+	drawing_ciel_and_floor(game);
+	raycast(game);
+	draw_map(game);
+	drawing_the_player(game);
 }

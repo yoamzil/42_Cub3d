@@ -6,7 +6,7 @@
 /*   By: omakran <omakran@student.1337.ma >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 17:53:47 by omakran           #+#    #+#             */
-/*   Updated: 2023/11/30 22:35:03 by omakran          ###   ########.fr       */
+/*   Updated: 2023/12/02 22:18:49 by omakran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int	intialize_window(t_game *game)
 		ft_putstr_fd("Error Initializing MINI_MAP.\n", 2);
 		exit(EXIT_FAILURE);
 	}
-	drawing(game);
 	if (mlx_image_to_window(game->win, game->mini_map, 0, 0) == -1)
 	{
 		mlx_close_window(game->win);
@@ -38,14 +37,11 @@ int	intialize_window(t_game *game)
 
 void	start(t_game *game)
 {
-	intialize_window(game);
-	get_player_position(game);
 	set_up(game);
-	// drawing
+	get_player_position(game);
+	intialize_window(game);
 	drawing_ciel_and_floor(game);
 	raycast(game);
-	// drawing_the_player(game);
-	// draw_map(game);
 	// drawing_the_player(game);
 	mlx_loop_hook(game->win, ft_hook, game);
 	mlx_loop(game->win);

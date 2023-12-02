@@ -6,7 +6,7 @@
 /*   By: omakran <omakran@student.1337.ma >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 13:02:16 by omakran           #+#    #+#             */
-/*   Updated: 2023/11/30 23:53:27 by omakran          ###   ########.fr       */
+/*   Updated: 2023/12/02 21:36:37 by omakran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,19 +66,43 @@ void	get_player_position(t_game *game)
 {
 	int		i;
 	char	dir;
+	int		y;
 
 	dir = get_the_direct_of_player(game);
-	i = 0;
-	while (game->map[i])
+	y = 0;
+	while (game->map[y])
 	{
-		if (!ft_strchr(game->map[i], dir))
+		i= 0;
+		while (game->map[y][i])
 		{
+			if (game->map[y][i] == 'N' || game->map[y][i] == 'S' || game->map[y][i] == 'E' || game->map[y][i] == 'W')
+			{
+				game->player_pos->y = y * SQUAR_SIZE + SQUAR_SIZE/2;
+				game->player_pos->x = i * SQUAR_SIZE + SQUAR_SIZE/2;
+				return;			
+			}
 			i++;
-			continue ;
 		}
-		break ;
+		y++;
 	}
-	game->player_pos->y = (float)(i * SQUAR_SIZE + (SQUAR_SIZE / 2) + 1);
-	game->player_pos->x = (float)(((ft_strchr(game->map[i], dir))
-				- game->map[i]) * SQUAR_SIZE + (SQUAR_SIZE / 2) + 1);
 }
+
+// void	get_player_position(t_game *game)
+// {
+// 	int		i;
+// 	char	dir;
+
+// 	dir = get_the_direct_of_player(game);
+// 	i = 0;
+// 	while (game->map[i])
+// 	{
+// 		if (!ft_strchr(game->map[i], dir))
+// 		{
+// 			i++;
+// 			continue ;
+// 		}
+// 		break ;
+// 	}
+// 	game->player_pos->y = i * SQUAR_SIZE + SQUAR_SIZE / 2 + 1;
+// 	game->player_pos->x  = (((ft_strchr(game->map[i], dir) - game->map[i]) * SQUAR_SIZE) + SQUAR_SIZE / 2) + 1;
+// }

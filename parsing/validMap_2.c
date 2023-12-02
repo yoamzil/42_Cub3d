@@ -6,7 +6,7 @@
 /*   By: omakran <omakran@student.1337.ma >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:06:03 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/11/30 23:38:19 by omakran          ###   ########.fr       */
+/*   Updated: 2023/12/01 21:04:53 by omakran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,7 @@
 int	is_valid_map(t_game *game, int i)
 {
 	if (is_surrounded_by_walls(game->file, i)
-		&& is_valid_map_chars(game->file, i) && has_valid_pec(game, i)
-		&& has_right_identifiers(*game, game->file))
+		&& is_valid_map_chars(game->file, i) && has_valid_pec(game, i))
 		return (1);
 	return (0);
 }

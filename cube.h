@@ -6,7 +6,7 @@
 /*   By: omakran <omakran@student.1337.ma >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:11:09 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/11/30 23:38:30 by omakran          ###   ########.fr       */
+/*   Updated: 2023/12/02 23:55:51 by omakran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,8 @@ typedef struct s_player_x_y
 	float distance;
 	int wall_height;
 	float num_rays;
-	int	is_facing_up;
-	int	is_facing_left;
+	bool	is_facing_up;
+	bool	is_facing_left;
 	float x_step;
 	float y_step;
 	int direction;
@@ -90,11 +90,11 @@ typedef struct s_ray_cast
 	float wall_hit_x;
 	float wall_hit_y;
 	float distance;
-	int was_hit_vertical;
-	int is_ray_facing_up;
-	int is_ray_facing_down;
-	int is_ray_facing_left;
-	int is_ray_facing_right;
+	bool was_hit_vertical;
+	bool is_ray_facing_up;
+	bool is_ray_facing_down;
+	bool is_ray_facing_left;
+	bool is_ray_facing_right;
 	int wall_hit_content;
 } t_ray_cast;
 

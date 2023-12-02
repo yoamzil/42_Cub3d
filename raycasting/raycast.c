@@ -6,7 +6,7 @@
 /*   By: omakran <omakran@student.1337.ma >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 12:55:37 by omakran           #+#    #+#             */
-/*   Updated: 2023/11/30 22:11:41 by omakran          ###   ########.fr       */
+/*   Updated: 2023/12/02 23:29:26 by omakran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,20 @@ int check_if_hit_wall(t_game *game, double x, double y)
 	float	new_x;
 	float	new_y;
 
-	if (x <= 0 || x >= SQUAR_SIZE * WIDTH || y <= 0 || y >= SQUAR_SIZE * HEIGHT)
-		return (0);
+	if (x <= 0 || x >= SQUAR_SIZE * game->width || y <= 0 || y >= SQUAR_SIZE * game->height)
+		return (1);
 	new_x = floor(x / SQUAR_SIZE);
 	new_y = floor(y / SQUAR_SIZE);
-	if (new_x <= 0 || new_x >= WIDTH || new_y < 0 || new_y >= HEIGHT)
-		return (0);
+	if (new_x <= 0 || new_x >= game->width || new_y < 0 || new_y >= game->height)
+		return (1);
 	if (game->map[(int)new_y][(int)new_x] == '1')
-		return (0);
-	return (1); 
+		return (1);
+	return (0); 
 }
 
 t_game	*get_wall_height(t_game *game)
 {
-	game->player_pos->wall_height = (SQUAR_SIZE / game->player_pos->distance) * (WIDTH / 2) / tan(game->player_pos->fov_angle / 2);
+	game->player_pos->wall_height = (SQUAR_SIZE / game->player_pos->distance) * (WIDTH / 2) / tan(M_PI / 4);
 	if (game->player_pos->wall_height > HEIGHT)
 		game->player_pos->wall_height = HEIGHT;
 	game->player_pos->ystart = (HEIGHT / 2) - (game->player_pos->wall_height / 2);
@@ -61,7 +61,7 @@ t_game	*the_closest_point(t_game *game)
 
 float	get_distance(float x_1, float y_1, float x_2, float y_2)
 {
-	return (sqrt((x_2 - x_1) * (x_2 - x_1) + (y_2 - y_1) * (y_2 - y_1)));
+	return ( sqrt(((x_2 - x_1) * (x_2 - x_1)) + ((y_2 - y_1) * (y_2 - y_1))) );
 }
 t_game	*valid_distance(t_game *game, float ray_angle)
 {
@@ -70,8 +70,8 @@ t_game	*valid_distance(t_game *game, float ray_angle)
 	angle = normalize_angle(ray_angle);
 	horizontal_steps(game, ray_angle);
 	vertical_steps(game, ray_angle);
-	game->player_pos->dist_vert = get_distance(game->player_pos->x, game->player_pos->y, game->player_pos->x_step, game->player_pos->y_step);
-	game->player_pos->dist_hori = get_distance(game->player_pos->x, game->player_pos->y, game->player_pos->x_step, game->player_pos->y_step);
+	game->player_pos->dist_vert = get_distance(game->player_pos->x, game->player_pos->y, game->ver->x_ver, game->ver->y_ver);
+	game->player_pos->dist_hori = get_distance(game->player_pos->x, game->player_pos->y, game->hori->x_hori, game->hori->y_hori);
 	game = the_closest_point(game);
 	game->player_pos->distance = game->player_pos->distance * cos(ray_angle - game->player_pos->rotation_angle);
 	return (game);
@@ -101,14 +101,15 @@ void	casting_the_rays(t_game *game, float ray_angle, int id)
 }
 void	raycast(t_game *game)
 {
-	int	id;
+	int	rays;
 
-	id = 0;
-	game->rayangle = normalize_angle(game->player_pos->rotation_angle - (FOV / 2));
-	while (id < game->player_pos->num_rays)
+	rays = 0;
+	// game->player_pos->rotation_angle = normalize_angle(game->player_pos->rotation_angle);
+	game->rayangle = normalize_angle(game->player_pos->rotation_angle - (game->player_pos->fov_angle / 2));
+	while (rays < WIDTH)
 	{
-		casting_the_rays(game, game->rayangle, id);
-		game->rayangle += normalize_angle(FOV / game->player_pos->num_rays);
-		id++;
+		casting_the_rays(game, game->rayangle, rays);
+		game->rayangle += normalize_angle(game->player_pos->fov_angle / WIDTH);
+		rays++;
 	}
 }

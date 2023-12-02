@@ -6,7 +6,7 @@
 /*   By: omakran <omakran@student.1337.ma >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:11:00 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/11/30 23:58:12 by omakran          ###   ########.fr       */
+/*   Updated: 2023/12/02 18:49:08 by omakran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,14 +63,13 @@ void	store_ceiling(t_game *game, char **map, int i)
 }
 void	set_up(t_game *game)
 {
-	game->player_pos->fov_angle = 60 * (M_PI / 180); // TO CONVERT THE ANGLE TO RADIANS
+	game->player_pos->fov_angle = 60 * (M_PI / 180);
 	game->player_pos->wall_strip_width = 30;
 	game->player_pos->num_rays = WIDTH / game->player_pos->wall_strip_width;
 	
 }
 t_game	*init_data(t_game *game)
 {
-
 	game = (t_game *)malloc(sizeof(t_game));
 	if (!game)
 		return (NULL);
@@ -91,6 +90,10 @@ t_game	*init_data(t_game *game)
 	if (!game->textrs)
 		return (NULL);
 	game->player_pos->fov_angle = to_radian(60);
+	game->textrs->ea_t = malloc(sizeof(mlx_texture_t));
+	game->textrs->no_t = malloc(sizeof(mlx_texture_t));
+	game->textrs->so_t = malloc(sizeof(mlx_texture_t));
+	game->textrs->we_t = malloc(sizeof(mlx_texture_t));
 	return (game);
 }
 
@@ -101,10 +104,7 @@ int	main(int ac, char **av)
 	int		row;
 
 	game = NULL;
-	// ft_bzero(game, sizeof(t_game));
 	game = init_data(game);
-	// 	printf("%p\n", game->player_pos);
-	// exit(1);
 	i = 6;
 	row = 0;
 	if (ac == 2)
