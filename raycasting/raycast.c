@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omakran <omakran@student.1337.ma >         +#+  +:+       +#+        */
+/*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 12:55:37 by omakran           #+#    #+#             */
-/*   Updated: 2023/12/02 23:29:26 by omakran          ###   ########.fr       */
+/*   Updated: 2023/12/03 16:23:36 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int check_if_hit_wall(t_game *game, double x, double y)
 		return (1);
 	return (0); 
 }
-
+//X = 0 | 
 t_game	*get_wall_height(t_game *game)
 {
 	game->player_pos->wall_height = (SQUAR_SIZE / game->player_pos->distance) * (WIDTH / 2) / tan(M_PI / 4);

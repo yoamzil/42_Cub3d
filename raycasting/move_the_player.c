@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_the_player.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omakran <omakran@student.1337.ma >         +#+  +:+       +#+        */
+/*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 16:21:01 by omakran           #+#    #+#             */
-/*   Updated: 2023/12/02 23:55:31 by omakran          ###   ########.fr       */
+/*   Updated: 2023/12/03 16:34:07 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void DDA(t_game *map, int X0, int Y0, int X1, int Y1)
 	
     for (int i = 0; i <= steps; i++) 
 	{
-			if ((round(X) >= 0 && round(X) < WIDTH) && (round(Y) >= 0 && round(Y) < HEIGHT))
-	        	mlx_put_pixel(map->mini_map,round(X), round(Y), color(255,0,0,255)); // put pixel at (X,Y) 
+			if ((round(X) >= 0 && round(X) < WIDTH) && (round(Y) >= 0 && round(Y) < HEIGHT) && !check_if_hit_wall(map, X, Y))
+	        	// mlx_put_pixel(map->mini_map,round(X), round(Y), color(255,0,0,255)); // put pixel at (X,Y) 
         X += Xinc; // increment in x at each step
         Y += Yinc; // increment in y at each step
     }
@@ -40,9 +40,6 @@ void	drawing_the_player(t_game *game)
 {
 	int		i;
 	int		j;
-	float	x;
-	float	y;
-	int		z;
 
 	j = 0;
 	while (j < game->height)
@@ -61,17 +58,7 @@ void	drawing_the_player(t_game *game)
 		}
 		j++;
 	}
-	z = 0;
 	game->rayangle = game->player_pos->rotation_angle - to_radian(FOV / 2);
-	while (z < WIDTH)
-	{
-		x = cos(game->rayangle) * WIDTH;
-		y = sin(game->rayangle) * WIDTH;
-		DDA(game, game->player_pos->x, game->player_pos->y, game->player_pos->x + x, game->player_pos->y + y);
-		game->rayangle += to_radian(FOV) / WIDTH;
-		z++;
-	}
-	
 }
 
 float	normalize_angle(float angle)

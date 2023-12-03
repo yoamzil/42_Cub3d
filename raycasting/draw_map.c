@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omakran <omakran@student.1337.ma >         +#+  +:+       +#+        */
+/*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 12:55:33 by omakran           #+#    #+#             */
-/*   Updated: 2023/11/26 17:58:49 by omakran          ###   ########.fr       */
+/*   Updated: 2023/12/03 16:27:55 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	draw_line(t_game *game)
 	Y = y0;
 	for (int i = 0; i <= steps; i++)
 	{
-		mlx_put_pixel(game->mini_map, X, Y, color);
+		// mlx_put_pixel(game->mini_map, X, Y, color);
 		if (game->mini_map == NULL)
 			break ;
 		X += x_inc;
