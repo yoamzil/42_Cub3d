@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: omakran <omakran@student.1337.ma >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 10:42:45 by omakran           #+#    #+#             */
-/*   Updated: 2023/12/03 16:29:09 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/12/03 17:16:37 by omakran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ void	drawing_ciel_and_floor(t_game *game)
 		while (j < (WIDTH))
 		{
 			if (i < (HEIGHT) / 2)
-				mlx_put_pixel(game->mini_map, j, i, ft_pixel(0, 255, 0, 255));
-			else
 				mlx_put_pixel(game->mini_map, j, i, ft_pixel(0, 155, 155, 255));
+			else
+				mlx_put_pixel(game->mini_map, j, i, ft_pixel(0, 255, 0, 255));
 			j++;
 		}
 		i++;

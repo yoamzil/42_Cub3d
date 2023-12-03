@@ -6,7 +6,7 @@
 /*   By: omakran <omakran@student.1337.ma >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:11:09 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/12/02 23:55:51 by omakran          ###   ########.fr       */
+/*   Updated: 2023/12/03 18:04:00 by omakran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,14 +165,10 @@ void store_ceiling(t_game *game, char **map, int i);
 void error(void);
 void start(t_game *game);
 void draw_square(t_game *game, int x, int y, int __unused color);
-void draw_square_player(t_game *game, int x, int y,
-						int __unused color);
 void erase_drawing(t_game *game);
 void init_variables(t_game *game);
 void draw_map(t_game *game);
-void drawing_the_player(t_game *game);
 void get_player_position(t_game *game);
-void draw_line(t_game *game);
 void	drawing_ciel_and_floor(t_game *game);
 void set_up(t_game *game);
 float to_radian(float nb);
@@ -193,9 +189,7 @@ void can_move_to_left(t_game *game, int key);
 /* ##################################################################*/
 
 void	raycast(t_game *game);
-void	draw_line(t_game *game);
 float	normalize_angle(float angle);
-void	DDA(t_game *map, int x0, int y0, int x1, int y1);
 void	horizontal_steps(t_game *game, float ray_angle);
 void	vertical_steps(t_game *game, float ray_angle);
 int		check_if_hit_wall(t_game *game, double x, double y);
@@ -204,5 +198,11 @@ t_game	*the_closest_point(t_game *game);
 t_game	*valid_distance(t_game *game, float ray_angle);
 float	get_distance(float x_1, float y_1, float x_2, float y_2);
 void	draw_it(t_game *game, float x_tx , mlx_texture_t *texture, int id);
+
+/* ##################################################################*/
+/*					     FREE THE DATA:								 */
+/* ##################################################################*/
+
+void	free_the_all_data(t_game *game);
 
 #endif

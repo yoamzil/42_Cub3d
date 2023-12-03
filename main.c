@@ -6,7 +6,7 @@
 /*   By: omakran <omakran@student.1337.ma >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:11:00 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/12/02 18:49:08 by omakran          ###   ########.fr       */
+/*   Updated: 2023/12/03 18:00:44 by omakran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,11 @@ int	main(int ac, char **av)
 
 	game = NULL;
 	game = init_data(game);
+	if (!game)
+	{
+		free_the_all_data(game);
+		exit (EXIT_FAILURE);
+	}
 	i = 6;
 	row = 0;
 	if (ac == 2)

@@ -27,6 +27,7 @@ SRCS		=	main.c \
 				raycasting/raycast.c\
 				raycasting/herozontal.c\
 				raycasting/vertical.c\
+				free_the_all_data.c\
 				get_next_line/get_next_line.c \
 				get_next_line/get_next_line_utils.c \
 				libft/ft_atoi.c \
