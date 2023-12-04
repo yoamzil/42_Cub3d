@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omakran <omakran@student.1337.ma >         +#+  +:+       +#+        */
+/*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:11:00 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/12/03 18:00:44 by omakran          ###   ########.fr       */
+/*   Updated: 2023/12/04 09:37:19 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,20 +61,20 @@ void	store_ceiling(t_game *game, char **map, int i)
 	game->c = ft_strdup(tmp[1]);
 	free_tab(tmp);
 }
+
 void	set_up(t_game *game)
 {
 	game->player_pos->fov_angle = 60 * (M_PI / 180);
 	game->player_pos->wall_strip_width = 30;
 	game->player_pos->num_rays = WIDTH / game->player_pos->wall_strip_width;
-	
 }
+
 t_game	*init_data(t_game *game)
 {
 	game = (t_game *)malloc(sizeof(t_game));
 	if (!game)
 		return (NULL);
 	game->player_pos = (t_player_x_y *)malloc(sizeof(t_player_x_y));
-
 	if (!game->player_pos)
 		return (NULL);
 	game->hori = (t_hori *)malloc(sizeof(t_hori));

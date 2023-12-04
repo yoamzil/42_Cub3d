@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omakran <omakran@student.1337.ma >         +#+  +:+       +#+        */
+/*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 10:42:45 by omakran           #+#    #+#             */
-/*   Updated: 2023/12/03 17:16:37 by omakran          ###   ########.fr       */
+/*   Updated: 2023/12/04 09:20:37 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,12 @@
 int	ft_pixel_texture(int x, int y, mlx_texture_t *texture)
 {
 	int	i;
+
 	i = ((y * 4) * texture->width) + (x * 4);
 	// return (texture->pixels[i] << 24 | texture->pixels[i + 1] << 16 | texture->pixels[i + 2] << 8 | texture->pixels[i + 3]);
-	return 0x0FAE2;
+	return (0x0FAE2);
 }
+
 int	ft_pixel(int r, int g, int b, int a)
 {
 	return (r << 24 | g << 16 | b << 8 | a);
@@ -47,7 +49,7 @@ void	drawing_ciel_and_floor(t_game *game)
 {
 	int	i;
 	int	j;
-	
+
 	i = 0;
 	while (i < (HEIGHT))
 	{
@@ -63,14 +65,14 @@ void	drawing_ciel_and_floor(t_game *game)
 		i++;
 	}
 }
-void	draw_it(t_game *game, float x_tx , mlx_texture_t *texture, int id)
+
+void	draw_it(t_game *game, float x_tx, mlx_texture_t *texture, int id)
 {
 	float	top_the_wall_pixel;
 	float	x_intercept;
 	float	start_tmp_y;
 	float	y_tx;
-	
-	
+
 	start_tmp_y = ((HEIGHT / 2) - (game->player_pos->wall_height) / 2);
 	x_intercept = texture->height / (float)game->player_pos->wall_height;
 	top_the_wall_pixel = start_tmp_y;
@@ -84,6 +86,7 @@ void	draw_it(t_game *game, float x_tx , mlx_texture_t *texture, int id)
 		start_tmp_y++;
 	}
 }
+
 void	drawing(t_game *game)
 {
 	draw_map(game);

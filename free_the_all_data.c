@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   free_the_all_data.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omakran <omakran@student.1337.ma >         +#+  +:+       +#+        */
+/*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 17:56:08 by omakran           #+#    #+#             */
-/*   Updated: 2023/12/03 18:02:47 by omakran          ###   ########.fr       */
+/*   Updated: 2023/12/04 09:36:32 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
-
 
 void	free_the_double_arr(char **str)
 {
@@ -30,4 +29,3 @@ void	free_the_all_data(t_game *game)
 {
 	free_the_double_arr(game->map);
 }
-

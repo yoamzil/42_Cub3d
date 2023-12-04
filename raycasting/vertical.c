@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vertical.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omakran <omakran@student.1337.ma >         +#+  +:+       +#+        */
+/*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 22:43:19 by omakran           #+#    #+#             */
-/*   Updated: 2023/12/03 00:02:15 by omakran          ###   ########.fr       */
+/*   Updated: 2023/12/04 09:28:19 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,14 @@ void	check_the_vertical(t_game *game, float *ray_angle)
 		game->ver->y_ver += game->player_pos->sign * SQUAR_SIZE * tan(*ray_angle);
 	}
 }
+
 void	vertical_steps(t_game *game, float ray_angle)
 {
 	game->player_pos->sign = 1;
 	game->ver->x_ver = 0;
 	game->ver->y_ver = 0;
 	ray_angle = normalize_angle(ray_angle);
-	game->player_pos->is_facing_left  = ray_angle > M_PI / 2 && ray_angle < 1.5 * M_PI;
+	game->player_pos->is_facing_left = ray_angle > M_PI / 2 && ray_angle < 1.5 * M_PI;
 	game->ver->x_ver = ceil(game->player_pos->x / SQUAR_SIZE) * SQUAR_SIZE;
 	if (game->player_pos->is_facing_left)
 	{

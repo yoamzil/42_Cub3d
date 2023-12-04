@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   herozontal.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omakran <omakran@student.1337.ma >         +#+  +:+       +#+        */
+/*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 22:43:22 by omakran           #+#    #+#             */
-/*   Updated: 2023/12/02 22:14:53 by omakran          ###   ########.fr       */
+/*   Updated: 2023/12/04 09:21:22 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,13 @@ void	check_the_horizontal(t_game *game, float *ray_angle)
 	{
 		if ((game->player_pos->is_facing_up && check_if_hit_wall(game, game->hori->x_hori, game->hori->y_hori - SQUAR_SIZE)) 
 			|| (!game->player_pos->is_facing_up && (check_if_hit_wall(game, game->hori->x_hori, game->hori->y_hori)))
-				|| (game->player_pos->is_facing_up && check_if_hit_wall(game, game->hori->x_hori, game->hori->y_hori)))
+			|| (game->player_pos->is_facing_up && check_if_hit_wall(game, game->hori->x_hori, game->hori->y_hori)))
 			break ;
-		game->hori->x_hori += game->player_pos->sign *  SQUAR_SIZE / tan(*ray_angle);
-		game->hori->y_hori +=  game->player_pos->sign * SQUAR_SIZE;
+		game->hori->x_hori += game->player_pos->sign * SQUAR_SIZE / tan(*ray_angle);
+		game->hori->y_hori += game->player_pos->sign * SQUAR_SIZE;
 	}
 }
+
 void	horizontal_steps(t_game *game, float ray_angle)
 {
 	game->player_pos->sign = 1;

@@ -6,18 +6,19 @@
 /*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 12:55:37 by omakran           #+#    #+#             */
-/*   Updated: 2023/12/03 16:23:36 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/12/04 09:26:10 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube.h"
 
-int check_if_hit_wall(t_game *game, double x, double y)
+int	check_if_hit_wall(t_game *game, double x, double y)
 {
 	float	new_x;
 	float	new_y;
 
-	if (x <= 0 || x >= SQUAR_SIZE * game->width || y <= 0 || y >= SQUAR_SIZE * game->height)
+	if (x <= 0 || x >= SQUAR_SIZE * game->width
+		|| y <= 0 || y >= SQUAR_SIZE * game->height)
 		return (1);
 	new_x = floor(x / SQUAR_SIZE);
 	new_y = floor(y / SQUAR_SIZE);
@@ -27,7 +28,7 @@ int check_if_hit_wall(t_game *game, double x, double y)
 		return (1);
 	return (0); 
 }
-//X = 0 | 
+
 t_game	*get_wall_height(t_game *game)
 {
 	game->player_pos->wall_height = (SQUAR_SIZE / game->player_pos->distance) * (WIDTH / 2) / tan(M_PI / 4);
@@ -61,8 +62,9 @@ t_game	*the_closest_point(t_game *game)
 
 float	get_distance(float x_1, float y_1, float x_2, float y_2)
 {
-	return ( sqrt(((x_2 - x_1) * (x_2 - x_1)) + ((y_2 - y_1) * (y_2 - y_1))) );
+	return (sqrt(((x_2 - x_1) * (x_2 - x_1)) + ((y_2 - y_1) * (y_2 - y_1))));
 }
+
 t_game	*valid_distance(t_game *game, float ray_angle)
 {
 	float	angle;
@@ -76,9 +78,10 @@ t_game	*valid_distance(t_game *game, float ray_angle)
 	game->player_pos->distance = game->player_pos->distance * cos(ray_angle - game->player_pos->rotation_angle);
 	return (game);
 }
+
 void	casting_the_rays(t_game *game, float ray_angle, int id)
 {
-	game = valid_distance(game,  ray_angle);
+	game = valid_distance(game, ray_angle);
 	game = get_wall_height(game);
 	if (game->ver->is_ver == 1)
 		game->x_tx = (int)game->player_pos->y_step % SQUAR_SIZE;
@@ -99,6 +102,7 @@ void	casting_the_rays(t_game *game, float ray_angle, int id)
 			draw_it(game, game->x_tx, game->textrs->ea_t, id);
 	}
 }
+
 void	raycast(t_game *game)
 {
 	int	rays;
