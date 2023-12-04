@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   the_moves.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omakran <omakran@student.1337.ma >         +#+  +:+       +#+        */
+/*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 19:25:03 by omakran           #+#    #+#             */
-/*   Updated: 2023/11/26 16:30:53 by omakran          ###   ########.fr       */
+/*   Updated: 2023/12/04 09:56:51 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,7 @@ void	movement(t_game *game, int key)
 		can_move_to_right(game, MLX_KEY_D);
 	if (key == MLX_KEY_A)
 		can_move_to_left(game, MLX_KEY_A);
-	if (!collides_with_wall(game, game->player_pos->new_x + (SQUAR_SIZE_PLAYER
-				/ 2), game->player_pos->new_y + (SQUAR_SIZE_PLAYER / 2))
+	if (!collides_with_wall(game, game->player_pos->new_x, game->player_pos->new_y)
 		&& is_within_window(game->player_pos->new_x + (SQUAR_SIZE_PLAYER / 2),
 			game->player_pos->new_y + (SQUAR_SIZE_PLAYER / 2)))
 	{
