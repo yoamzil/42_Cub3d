@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: omakran <omakran@student.1337.ma >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:11:00 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/12/04 09:37:19 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/12/06 22:34:35 by omakran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void	store_ceiling(t_game *game, char **map, int i)
 
 void	set_up(t_game *game)
 {
+	game->player_pos->move_speed = 3.5;
 	game->player_pos->fov_angle = 60 * (M_PI / 180);
 	game->player_pos->wall_strip_width = 30;
 	game->player_pos->num_rays = WIDTH / game->player_pos->wall_strip_width;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: omakran <omakran@student.1337.ma >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:11:09 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/12/04 09:36:11 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/12/06 22:12:38 by omakran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ typedef struct s_player_x_y
 	float	rotation_angle;
 	float	radians;
 	float	fov_angle;
+	float	move_speed;
 	float	wall_strip_width;
 	float	dist_hori;
 	float	dist_vert;
@@ -157,7 +158,7 @@ int		comma_count(char *str);
 int		intialize_window(t_game *game);
 int		close_game(void *param);
 int		ft_pixel(int r, int g, int b, int a);
-void	ft_hook(void *param);
+void	ft_hook( void *param);
 void	drawing(t_game *game);
 void	store_textures(t_game *game, char **map);
 void	store_floor(t_game *game, char **map, int i);
@@ -173,6 +174,7 @@ void	drawing_ciel_and_floor(t_game *game);
 void	set_up(t_game *game);
 float	to_radian(float nb);
 void	direction_of_player(t_game *game);
+int		is_there_a_wall(t_game *game, float x, float y);
 
 /* #####################################################################*/
 /*						Function Of  Moves:								*/
@@ -183,6 +185,8 @@ void	can_move_to_up(t_game *game, int key);
 void	can_move_to_down(t_game *game, int key);
 void	can_move_to_right(t_game *game, int key);
 void	can_move_to_left(t_game *game, int key);
+void	can_move_a_w(t_game *game);
+void	can_move_s_d(t_game *game);
 
 /* ##################################################################*/
 /*					     Raycasting:								 */
@@ -198,6 +202,8 @@ t_game	*the_closest_point(t_game *game);
 t_game	*valid_distance(t_game *game, float ray_angle);
 float	get_distance(float x_1, float y_1, float x_2, float y_2);
 void	draw_it(t_game *game, float x_tx, mlx_texture_t *texture, int id);
+void	drawing_the_player(t_game *game);
+void	draw_square_player(t_game *game, int x, int y, int __unused color);
 
 /* ##################################################################*/
 /*					     FREE THE DATA:								 */

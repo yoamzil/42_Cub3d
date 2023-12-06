@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: omakran <omakran@student.1337.ma >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 12:55:37 by omakran           #+#    #+#             */
-/*   Updated: 2023/12/04 09:26:10 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/12/04 17:21:37 by omakran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,6 @@ void	raycast(t_game *game)
 	int	rays;
 
 	rays = 0;
-	// game->player_pos->rotation_angle = normalize_angle(game->player_pos->rotation_angle);
 	game->rayangle = normalize_angle(game->player_pos->rotation_angle - (game->player_pos->fov_angle / 2));
 	while (rays < WIDTH)
 	{
