@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omakran <omakran@student.1337.ma >         +#+  +:+       +#+        */
+/*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:11:09 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/12/06 22:12:38 by omakran          ###   ########.fr       */
+/*   Updated: 2023/12/07 15:23:44 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,7 +150,8 @@ int		is_valid_map_chars(char **map, int i);
 int		has_valid_pec(t_game *game, int i);
 int		has_double_newline(char *map);
 int		has_right_identifiers(t_game game, char **map);
-int		has_right_rgb(t_game *game);
+void	has_right_rgb(t_game *game);
+int		has_right_rgb_support(char **rgb_f_array, char **rgb_c_array);
 int		tab_counter(char **tab);
 int		free_tab(char **tab);
 int		check_numbers(char *str);

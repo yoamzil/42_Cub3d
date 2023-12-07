@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validMap_2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omakran <omakran@student.1337.ma >         +#+  +:+       +#+        */
+/*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:06:03 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/12/01 21:04:53 by omakran          ###   ########.fr       */
+/*   Updated: 2023/12/07 15:36:36 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	has_right_identifiers(t_game game, char **map)
 	return (0);
 }
 
-int	has_right_rgb(t_game *game)
+void	has_right_rgb(t_game *game)
 {
 	char	**rgb_f_array;
 	char	**rgb_c_array;
@@ -75,6 +75,11 @@ int	has_right_rgb(t_game *game)
 		error();
 	rgb_f_array = ft_split(game->f, ',');
 	rgb_c_array = ft_split(game->c, ',');
+	has_right_rgb_support(rgb_f_array, rgb_c_array);
+}
+
+int	has_right_rgb_support(char **rgb_f_array, char **rgb_c_array)
+{
 	if (tab_counter(rgb_f_array) == 3 && tab_counter(rgb_c_array) == 3)
 	{
 		if (ft_atoi(rgb_f_array[0]) >= 0 && ft_atoi(rgb_f_array[0]) <= 255
@@ -83,9 +88,17 @@ int	has_right_rgb(t_game *game)
 			&& ft_atoi(rgb_c_array[0]) >= 0 && ft_atoi(rgb_c_array[0]) <= 255
 			&& ft_atoi(rgb_c_array[1]) >= 0 && ft_atoi(rgb_c_array[1]) <= 255
 			&& ft_atoi(rgb_c_array[2]) >= 0 && ft_atoi(rgb_c_array[2]) <= 255)
+		{
+			free_tab(rgb_f_array);
+			free_tab(rgb_c_array);
 			return (0);
-		else 
+		}
+		else
+		{
+			free_tab(rgb_f_array);
+			free_tab(rgb_c_array);
 			error();
+		}
 	}
 	else
 		error();

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omakran <omakran@student.1337.ma >         +#+  +:+       +#+        */
+/*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:11:00 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/12/06 22:34:35 by omakran          ###   ########.fr       */
+/*   Updated: 2023/12/07 15:34:17 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ char	**read_map(char *filepath)
 	fd = open(filepath, O_RDONLY);
 	line = get_next_line(fd);
 	if (!line || fd == -1)
+	{
+		free(accumulator);
 		return (NULL);
+	}
 	while (line)
 	{
 		temp_holder = accumulator;
