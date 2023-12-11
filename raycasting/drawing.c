@@ -6,7 +6,7 @@
 /*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 10:42:45 by omakran           #+#    #+#             */
-/*   Updated: 2023/12/11 18:51:37 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/12/11 21:56:29 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,7 +187,7 @@ void	draw_it(t_game *game, float x_tx, mlx_texture_t *texture, int id)
 	float fact = game->texture[game->sides]->height / (float)game->player_pos->wall_height;
 	while (game->player_pos->ystart < game->player_pos->yend)
 	{
-		float distop = game->player_pos->ystart + ((float)game->player_pos->wall_height) - (HEIGHT / 2);
+		float distop = game->player_pos->ystart + ((float)game->player_pos->wall_height/2) - (HEIGHT / 2);
 		xoffset = (int)game->touch % game->texture[game->sides]->width;
 		yoffset = distop * fact / 2;
 		color = getcolor(game->texture[game->sides], yoffset, xoffset);

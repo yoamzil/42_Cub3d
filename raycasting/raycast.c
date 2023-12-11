@@ -6,7 +6,7 @@
 /*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 12:55:37 by omakran           #+#    #+#             */
-/*   Updated: 2023/12/11 19:23:22 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/12/11 21:51:29 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	check_if_hit_wall(t_game *game, double x, double y)
 
 t_game	*get_wall_height(t_game *game)
 {
-	game->player_pos->wall_height = (SQUAR_SIZE / game->player_pos->distance) * (WIDTH / 2) / tan(M_PI / 4);
+	game->player_pos->wall_height = (SQUAR_SIZE / game->player_pos->distance) * ((WIDTH / 2) / tan(M_PI / 4));
 	if (game->player_pos->wall_height > HEIGHT)
 		game->player_pos->wall_height = HEIGHT;
 	game->player_pos->ystart = (HEIGHT / 2) - (game->player_pos->wall_height / 2);
@@ -95,7 +95,7 @@ void	casting_the_rays(t_game *game, float ray_angle, int id)
 	}
 	if (game->player_pos->dist_vert > game->player_pos->dist_hori)
 	{
-		if (game->rayangle >= 0 &&  game->rayangle <= M_PI)
+		if (sin(game->rayangle) > 0)
 			game->sides = 1;
 		else
 			game->sides = 0;
@@ -106,7 +106,7 @@ void	casting_the_rays(t_game *game, float ray_angle, int id)
 	}
 	else
 	{
-		if (game->rayangle <= M_PI * 0.5 || game->rayangle >= 1.5 * M_PI)
+		if (cos(game->rayangle) > 0)
 			game->sides = 3;
 		else
 			game->sides = 2;
