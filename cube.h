@@ -6,7 +6,7 @@
 /*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:11:09 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/12/07 15:23:44 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/12/11 19:04:32 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,25 @@
 /*######################################################*/
 /*                    My Structs:						*/
 /*######################################################*/
+
+typedef struct int_coordinates
+{
+	int	x;
+	int	y;
+}	t_int_coords;
+
+typedef struct point_coordinates
+{
+	float	x;
+	float	y;
+}	t_coords;
+
+typedef struct two_point_coordinates
+{
+	t_coords	img;
+	t_coords	tex;
+}	t_two_coords;
+
 
 typedef struct s_texters
 {
@@ -85,6 +104,18 @@ typedef struct s_player_x_y
 
 }	t_player_x_y;
 
+typedef struct s_ray
+{
+	float	x;
+	float	y;
+	float	distance;
+	float	is_horz;
+	int		is_facing_down;
+	int		is_facing_up;
+	int		is_facing_right;
+	int		is_facing_left;
+}	t_ray;
+
 typedef struct s_ray_cast
 {
 	float	ray_angle;
@@ -124,6 +155,8 @@ typedef struct s_game
 	char			*ea;
 	char			*f;
 	char			*c;
+	float			touch;
+	int				sides;
 	float			rayangle;
 	int				no_count;
 	int				so_count;
@@ -137,6 +170,7 @@ typedef struct s_game
 	t_ray_cast		*cast;
 	t_ver			*ver;
 	t_textrs		*textrs;
+	mlx_texture_t	*texture[4];
 }	t_game;
 
 /* ################################################################*/
@@ -205,6 +239,7 @@ float	get_distance(float x_1, float y_1, float x_2, float y_2);
 void	draw_it(t_game *game, float x_tx, mlx_texture_t *texture, int id);
 void	drawing_the_player(t_game *game);
 void	draw_square_player(t_game *game, int x, int y, int __unused color);
+void	get_texture(t_game *game);
 
 /* ##################################################################*/
 /*					     FREE THE DATA:								 */

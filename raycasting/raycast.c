@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omakran <omakran@student.1337.ma >         +#+  +:+       +#+        */
+/*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 12:55:37 by omakran           #+#    #+#             */
-/*   Updated: 2023/12/04 17:21:37 by omakran          ###   ########.fr       */
+/*   Updated: 2023/12/11 19:23:22 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,11 +84,21 @@ void	casting_the_rays(t_game *game, float ray_angle, int id)
 	game = valid_distance(game, ray_angle);
 	game = get_wall_height(game);
 	if (game->ver->is_ver == 1)
+	{
+		game->touch =  game->ver->y_ver;
 		game->x_tx = (int)game->player_pos->y_step % SQUAR_SIZE;
+	}
 	else
+	{
+		game->touch =  game->hori->x_hori;
 		game->x_tx = (int)game->player_pos->x_step % SQUAR_SIZE;
+	}
 	if (game->player_pos->dist_vert > game->player_pos->dist_hori)
 	{
+		if (game->rayangle >= 0 &&  game->rayangle <= M_PI)
+			game->sides = 1;
+		else
+			game->sides = 0;
 		if (game->cast->is_ray_facing_up == 1)
 			draw_it(game, game->x_tx, game->textrs->no_t, id);
 		else
@@ -96,6 +106,10 @@ void	casting_the_rays(t_game *game, float ray_angle, int id)
 	}
 	else
 	{
+		if (game->rayangle <= M_PI * 0.5 || game->rayangle >= 1.5 * M_PI)
+			game->sides = 3;
+		else
+			game->sides = 2;
 		if (game->cast->is_ray_facing_left == 1)
 			draw_it(game, game->x_tx, game->textrs->we_t, id);
 		else

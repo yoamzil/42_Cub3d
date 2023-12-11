@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_mlx_window.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omakran <omakran@student.1337.ma >         +#+  +:+       +#+        */
+/*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 17:53:47 by omakran           #+#    #+#             */
-/*   Updated: 2023/12/06 22:05:56 by omakran          ###   ########.fr       */
+/*   Updated: 2023/12/09 19:18:20 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	start(t_game *game)
 	get_player_position(game);
 	intialize_window(game);
 	drawing_ciel_and_floor(game);
+	get_texture(game);
 	raycast(game);
 	mlx_loop_hook(game->win, ft_hook, game);
 	mlx_loop(game->win);

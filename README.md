@@ -48,3 +48,13 @@ The game supports various events and functionalities, including:
 [1]: https://www.youtube.com/watch?v=7P_dic-pSKo&ab_channel=3DRealms
 [2]: https://github.com/lucaslefrancq/42_cub3D/blob/master/cub3D.en.subject.pdf
 [3]: https://permadi.com/1996/05/ray-casting-tutorial-table-of-contents/
+
+
+
+Amazing news to all participants!
+We're excited to announce that immediately after the finals of the 8-Ball Tournament, we'll be distributing prizes to all the winners of the games played throughout the tournament.
+
+
+
+
+The anticipation has led us to the finals of the 8-Ball Tournament, where Youness [yoamzil] and Younes [yaghrous] will battle for the championship title. Get ready to witness an epic clash tomorrow at 5 PM! Additionally, right after the 8-ball final match, we'll be distributing prizes for all the games played during the tournament. Following the prize ceremony, let's gather for a delightful dinner together. And that's not all—get geared up for an incredible night party to celebrate the fantastic moments and camaraderie! Join us for an evening packed with excitement, competition, good food, and great company! 🎱🏆
