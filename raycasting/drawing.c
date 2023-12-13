@@ -188,12 +188,12 @@ void	draw_it(t_game *game, float __unused x_tx, mlx_texture_t __unused *texture,
 	{
 		float distop = game->player_pos->ystart + ((float)game->player_pos->wall_height/2) - (HEIGHT / 2);
 		xoffset = (int)game->touch % game->texture[game->sides]->width;
-		yoffset = distop * x_intercept / 2;
+		yoffset = distop * x_intercept;
 		color = getcolor(game->texture[game->sides], yoffset, xoffset);
 		y_tx = (game->player_pos->ystart - top_the_wall_pixel) * x_tx;
 		if (y_tx >= texture->height)
 			y_tx = 0;
-		if(game->player_pos->ystart >= 0 && game->player_pos->ystart < HEIGHT)
+		if(game->player_pos->ystart >= 0 && game->player_pos->ystart <= HEIGHT)
 			mlx_put_pixel(game->mini_map, id, game->player_pos->ystart, color);
 		game->player_pos->ystart++;
 		start_tmp_y++;
