@@ -170,16 +170,16 @@ int32_t	getcolor(mlx_texture_t *img, int y, int x)
 	return (ft_pixel(0, 0, 0, 0));
 }
 
-void	draw_it(t_game *game, float x_tx, mlx_texture_t *texture, int id)
+void	draw_it(t_game *game, float __unused x_tx, mlx_texture_t __unused *texture, int __unused id)
 {
 	(void)id;
-	float	top_the_wall_pixel;
-	float	x_intercept;
-	float	start_tmp_y;
-	float	y_tx;
-	float xoffset;
-	float yoffset;
-	uint32_t color;
+	float	__unused top_the_wall_pixel;
+	float	__unused x_intercept;
+	float	__unused start_tmp_y;
+	float	__unused y_tx;
+	float __unused xoffset;
+	float __unused yoffset;
+	uint32_t __unused color;
 
 	start_tmp_y = ((HEIGHT / 2) - (game->player_pos->wall_height) / 2);
 	x_intercept = game->texture[game->sides]->height / (float)game->player_pos->wall_height;
@@ -193,7 +193,7 @@ void	draw_it(t_game *game, float x_tx, mlx_texture_t *texture, int id)
 		y_tx = (game->player_pos->ystart - top_the_wall_pixel) * x_tx;
 		if (y_tx >= texture->height)
 			y_tx = 0;
-		if(game->player_pos->ystart >= 0 && game->player_pos->ystart <= HEIGHT)
+		if(game->player_pos->ystart >= 0 && game->player_pos->ystart < HEIGHT)
 			mlx_put_pixel(game->mini_map, id, game->player_pos->ystart, color);
 		game->player_pos->ystart++;
 		start_tmp_y++;

@@ -77,7 +77,7 @@ t_game	*valid_distance(t_game *game, float ray_angle)
 	return (game);
 }
 
-void	casting_the_rays(t_game *game, float ray_angle, int id)
+void	casting_the_rays(t_game *game, float ray_angle, int __unused id)
 {
 	game = valid_distance(game, ray_angle);
 	game = get_wall_height(game);
