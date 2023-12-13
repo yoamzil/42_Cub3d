@@ -32,8 +32,6 @@ int	check_if_hit_wall(t_game *game, double x, double y)
 t_game	*get_wall_height(t_game *game)
 {
 	game->player_pos->wall_height = (SQUAR_SIZE / game->player_pos->distance) * ((WIDTH / 2) / tan(M_PI / 4));
-	if (game->player_pos->wall_height > HEIGHT)
-		game->player_pos->wall_height = HEIGHT;
 	game->player_pos->ystart = (HEIGHT / 2) - (game->player_pos->wall_height / 2);
 	game->player_pos->yend = (HEIGHT / 2) + (game->player_pos->wall_height / 2);
 	return (game);
