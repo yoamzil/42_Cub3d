@@ -1,7 +1,7 @@
 NAME		=	cub3D
 
 CC			=	cc
-CFLAGS		=	-g -Wall -Werror -Wextra -ffast-math -O3#-fsanitize=address 
+CFLAGS		=	-g -Wall -Werror -Wextra -ffast-math -O3 #-fsanitize=address 
  
 GLFW		=	$(shell brew --prefix glfw)
 

@@ -170,16 +170,16 @@ void	drawing_ciel_and_floor(t_game *game)
 	return (ft_pixel(0, 0, 0, 0));
 }*/
 
-void	draw_it(t_game *game, float __unused x_tx, mlx_texture_t __unused *texture, int __unused id)
+void	draw_it(t_game *game, float  x_tx, mlx_texture_t  *texture, int  id)
 {
 	(void)id;
-	float	__unused top_the_wall_pixel;
-	float	__unused x_intercept;
-	float	__unused start_tmp_y;
-	float	__unused y_tx;
-	float __unused xoffset;
-	float __unused yoffset;
-	uint32_t __unused color;
+	float	 top_the_wall_pixel;
+	float	 x_intercept;
+	float	 start_tmp_y;
+	float	 y_tx;
+	float  xoffset;
+	float  yoffset;
+
 	uint8_t* pixeli;
 	uint8_t* pixelx;
 
@@ -191,7 +191,6 @@ void	draw_it(t_game *game, float __unused x_tx, mlx_texture_t __unused *texture,
 	{
 		float distop = game->player_pos->ystart + ((float)game->player_pos->wall_height/2) - (HEIGHT / 2);
 		yoffset = distop * x_intercept;
-		//color = getcolor(game->texture[game->sides], yoffset, xoffset);
 		y_tx = (game->player_pos->ystart - top_the_wall_pixel) * x_tx;
 		if (y_tx >= texture->height)
 			y_tx = 0;
@@ -201,10 +200,11 @@ void	draw_it(t_game *game, float __unused x_tx, mlx_texture_t __unused *texture,
 					+ (int)xoffset) * game->texture[game->sides]->bytes_per_pixel];
 			pixeli = &game->mini_map->pixels[(((int)start_tmp_y * game->mini_map->width)
 					+ id) * game->texture[game->sides]->bytes_per_pixel];
-			ft_memmove(pixeli, pixelx, game->texture[game->sides]->bytes_per_pixel);
+			if (game->player_pos->ystart < HEIGHT)
+				ft_memmove(pixeli, pixelx, game->texture[game->sides]->bytes_per_pixel);
 		}
 		game->player_pos->ystart++;
-		start_tmp_y++;
+		start_tmp_y++; 
 	}
 	y_tx = texture->height;
 }
