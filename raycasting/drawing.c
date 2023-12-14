@@ -6,7 +6,7 @@
 /*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 10:42:45 by omakran           #+#    #+#             */
-/*   Updated: 2023/12/11 21:56:29 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/12/14 12:23:28 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,7 +157,7 @@ void	drawing_ciel_and_floor(t_game *game)
 		i++;
 	}
 }
-int32_t	getcolor(mlx_texture_t *img, int y, int x)
+/*int32_t	getcolor(mlx_texture_t *img, int y, int x)
 {
 	int	inc;
 
@@ -168,7 +168,7 @@ int32_t	getcolor(mlx_texture_t *img, int y, int x)
 				img->pixels[inc + 2], 255));
 	}
 	return (ft_pixel(0, 0, 0, 0));
-}
+}*/
 
 void	draw_it(t_game *game, float __unused x_tx, mlx_texture_t __unused *texture, int __unused id)
 {
@@ -180,21 +180,29 @@ void	draw_it(t_game *game, float __unused x_tx, mlx_texture_t __unused *texture,
 	float __unused xoffset;
 	float __unused yoffset;
 	uint32_t __unused color;
+	uint8_t* pixeli;
+	uint8_t* pixelx;
 
 	start_tmp_y = ((HEIGHT / 2) - (game->player_pos->wall_height) / 2);
 	x_intercept = game->texture[game->sides]->height / (float)game->player_pos->wall_height;
 	top_the_wall_pixel = start_tmp_y;
+	xoffset = ((int)game->touch % TILE_SIZE) * game->texture[game->sides]->width / TILE_SIZE;
 	while (game->player_pos->ystart < game->player_pos->yend)
 	{
 		float distop = game->player_pos->ystart + ((float)game->player_pos->wall_height/2) - (HEIGHT / 2);
-		xoffset = (int)game->touch % game->texture[game->sides]->width;
 		yoffset = distop * x_intercept;
-		color = getcolor(game->texture[game->sides], yoffset, xoffset);
+		//color = getcolor(game->texture[game->sides], yoffset, xoffset);
 		y_tx = (game->player_pos->ystart - top_the_wall_pixel) * x_tx;
 		if (y_tx >= texture->height)
 			y_tx = 0;
 		if(game->player_pos->ystart >= 0 && game->player_pos->ystart <= HEIGHT)
-			mlx_put_pixel(game->mini_map, id, game->player_pos->ystart, color);
+		{
+			pixelx = &game->texture[game->sides]->pixels[(((int)yoffset * game->texture[game->sides]->width)
+					+ (int)xoffset) * game->texture[game->sides]->bytes_per_pixel];
+			pixeli = &game->mini_map->pixels[(((int)start_tmp_y * game->mini_map->width)
+					+ id) * game->texture[game->sides]->bytes_per_pixel];
+			ft_memmove(pixeli, pixelx, game->texture[game->sides]->bytes_per_pixel);
+		}
 		game->player_pos->ystart++;
 		start_tmp_y++;
 	}
