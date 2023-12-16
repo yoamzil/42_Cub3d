@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   the_moves.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: omakran <omakran@student.1337.ma >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 19:25:03 by omakran           #+#    #+#             */
-/*   Updated: 2023/12/16 18:51:51 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/12/05 13:15:20 by omakran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,51 +17,32 @@ int	is_within_window(int x, int y)
 	return (x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT);
 }
 
-int	check_if_hit_wall(t_game *game, double x, double y)
-{
-	float	new_x;
-	float	new_y;
+// int	collides_with_wall(t_game *game, int x, int y)
+// {
+// 	int	map_x;
+// 	int	map_y;
 
-	if (x <= 0 || x >= SQUAR_SIZE * game->width
-		|| y <= 0 || y >= SQUAR_SIZE * game->height)
-		return (1);
-	new_x = floor(x / SQUAR_SIZE);
-	new_y = floor(y / SQUAR_SIZE);
-	if (new_x <= 0 || new_x >= game->width
-		|| new_y < 0 || new_y >= game->height)
-		return (1);
-	if (game->map[(int)new_y][(int)new_x] == '1')
-		return (1);
-	return (0);
-}
+// 	map_x = x / SQUAR_SIZE;
+// 	map_y = y / SQUAR_SIZE;
+// 	return (game->map[map_y][map_x] == '1');
+// }
 
-t_game	*get_wall_height(t_game *game)
-{
-	game->player_pos->wall_height = (SQUAR_SIZE
-			/ game->player_pos->distance) * ((WIDTH / 2) / tan(M_PI / 4));
-	game->player_pos->ystart = (HEIGHT / 2)
-		- (game->player_pos->wall_height / 2);
-	game->player_pos->yend = (HEIGHT / 2) + (game->player_pos->wall_height / 2);
-	return (game);
-}
-
-t_game	*the_closest_point(t_game *game)
-{
-	if (game->player_pos->dist_vert > game->player_pos->dist_hori)
-	{
-		game->player_pos->x_step = game->hori->x_hori;
-		game->player_pos->y_step = game->hori->y_hori;
-		game->player_pos->distance = game->player_pos->dist_hori;
-		game->hori->is_hori = 1;
-		game->ver->is_ver = 0;
-	}
-	else
-	{
-		game->player_pos->x_step = game->ver->x_ver;
-		game->player_pos->y_step = game->ver->y_ver;
-		game->player_pos->distance = game->player_pos->dist_vert;
-		game->hori->is_hori = 0;
-		game->ver->is_ver = 1;
-	}
-	return (game);
-}
+// void	movement(t_game *game, int key)
+// {
+// 	game->player_pos->dx = SQUAR_SIZE_PLAYER * cos(game->player_pos->rotation_angle);
+// 	game->player_pos->dy = SQUAR_SIZE_PLAYER * sin(game->player_pos->rotation_angle);
+// 	if (key == MLX_KEY_W)
+// 		can_move_to_up(game, MLX_KEY_W);
+// 	if (key == MLX_KEY_S)
+// 		can_move_to_down(game, MLX_KEY_S);
+// 	if (key == MLX_KEY_D)
+// 		can_move_to_right(game, MLX_KEY_D);
+// 	if (key == MLX_KEY_A)
+// 		can_move_to_left(game, MLX_KEY_A);
+// 	// if (!collides_with_wall(game, game->player_pos->new_x, game->player_pos->new_y)
+// 	// 	&& is_within_window(game->player_pos->new_x + (SQUAR_SIZE_PLAYER / 2),
+// 	// 		game->player_pos->new_y + (SQUAR_SIZE_PLAYER / 2)))
+// 	// {
+// 	// 	game->player_pos->x = game->player_pos->new_x;
+// 	// 	game->player_pos->y = game->player_pos->new_y;
+// }

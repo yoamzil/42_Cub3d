@@ -6,7 +6,7 @@
 /*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:11:09 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/12/16 16:09:23 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/12/16 21:54:40 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -243,7 +243,7 @@ void	raycast(t_game *game);
 float	normalize_angle(float angle);
 void	horizontal_steps(t_game *game, float ray_angle);
 void	vertical_steps(t_game *game, float ray_angle);
-int		check_if_hit_wall(t_game *game, double x, double y);
+int		check_if_hit_wall(t_game *game, float x, float y);
 t_game	*get_wall_height(t_game *game);
 t_game	*the_closest_point(t_game *game);
 t_game	*valid_distance(t_game *game, float ray_angle);
