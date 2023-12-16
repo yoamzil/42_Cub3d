@@ -6,7 +6,7 @@
 /*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 10:42:45 by omakran           #+#    #+#             */
-/*   Updated: 2023/12/16 16:29:50 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/12/16 18:52:09 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	draw_it(t_game *game, float x_tx, mlx_texture_t *texture, int id)
 		if (game->player_pos->ystart >= 0 && game->player_pos->ystart <= HEIGHT)
 		{
 			drawit->pixelx = &game->texture[game->sides]
-				->pixels[(((int)drawit->yoffset 
+				->pixels[(((int)drawit->yoffset
 						* game->texture[game->sides]->width)
 					+ (int)drawit->xoffset)
 				* game->texture[game->sides]->bytes_per_pixel];
@@ -82,7 +82,7 @@ void	draw_it(t_game *game, float x_tx, mlx_texture_t *texture, int id)
 					game->texture[game->sides]->bytes_per_pixel);
 		}
 		game->player_pos->ystart++;
-		drawit->start_tmp_y++; 
+		drawit->start_tmp_y++;
 	}
 	drawit->y_tx = texture->height;
 }

@@ -6,7 +6,7 @@
 /*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 19:25:03 by omakran           #+#    #+#             */
-/*   Updated: 2023/12/16 16:46:35 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/12/16 18:51:51 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	check_if_hit_wall(t_game *game, double x, double y)
 		return (1);
 	if (game->map[(int)new_y][(int)new_x] == '1')
 		return (1);
-	return (0); 
+	return (0);
 }
 
 t_game	*get_wall_height(t_game *game)
@@ -55,7 +55,7 @@ t_game	*the_closest_point(t_game *game)
 		game->hori->is_hori = 1;
 		game->ver->is_ver = 0;
 	}
-	else 
+	else
 	{
 		game->player_pos->x_step = game->ver->x_ver;
 		game->player_pos->y_step = game->ver->y_ver;

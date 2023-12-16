@@ -6,7 +6,7 @@
 /*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 22:43:22 by omakran           #+#    #+#             */
-/*   Updated: 2023/12/16 16:35:39 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/12/16 18:49:58 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	check_the_horizontal(t_game *game, float *ray_angle)
 	{
 		if ((game->player_pos->is_facing_up
 				&& check_if_hit_wall(game, game->hori->x_hori,
-					game->hori->y_hori - SQUAR_SIZE)) 
+					game->hori->y_hori - SQUAR_SIZE))
 			|| (!game->player_pos->is_facing_up
 				&& (check_if_hit_wall(game, game->hori->x_hori,
 						game->hori->y_hori)))

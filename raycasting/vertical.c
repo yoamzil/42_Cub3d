@@ -6,7 +6,7 @@
 /*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 22:43:19 by omakran           #+#    #+#             */
-/*   Updated: 2023/12/16 16:49:00 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/12/16 18:51:20 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	check_the_vertical(t_game *game, float *ray_angle)
 {
 	while (1)
 	{
-		if ((game->player_pos->is_facing_left 
+		if ((game->player_pos->is_facing_left
 				&& check_if_hit_wall(game, game->ver->x_ver
 					- SQUAR_SIZE, game->ver->y_ver))
 			|| (!game->player_pos->is_facing_left
