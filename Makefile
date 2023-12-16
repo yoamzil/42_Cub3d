@@ -1,7 +1,7 @@
 NAME		=	cub3D
 
 CC			=	cc
-CFLAGS		=	-g -Wall -Werror -Wextra -ffast-math -O3 #-fsanitize=address 
+CFLAGS		=	-g -Wall -Werror -Wextra -ffast-math -O3 
  
 GLFW		=	$(shell brew --prefix glfw)
 
@@ -29,6 +29,7 @@ SRCS		=	main.c \
 				raycasting/raycast.c\
 				raycasting/herozontal.c\
 				raycasting/vertical.c\
+				raycasting/mouse_tracing.c\
 				free_the_all_data.c\
 				get_next_line/get_next_line.c \
 				get_next_line/get_next_line_utils.c \

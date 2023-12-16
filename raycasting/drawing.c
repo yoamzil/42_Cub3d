@@ -30,9 +30,9 @@ void	drawing_ciel_and_floor(t_game *game)
 		while (j < (WIDTH))
 		{
 			if (i < (HEIGHT) / 2)
-				mlx_put_pixel(game->mini_map, j, i, ft_pixel(0, 155, 155, 255));
+				mlx_put_pixel(game->mini_map, j, i, ft_pixel(0, 0, 0, 0));
 			else
-				mlx_put_pixel(game->mini_map, j, i, ft_pixel(0, 255, 0, 255));
+				mlx_put_pixel(game->mini_map, j, i, ft_pixel(0, 0, 10, 255));
 			j++;
 		}
 		i++;

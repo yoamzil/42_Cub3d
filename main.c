@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: omakran <omakran@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:11:00 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/12/16 15:52:08 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/12/16 23:31:05 by omakran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	set_up(t_game *game)
 	game->player_pos->fov_angle = 60 * (M_PI / 180);
 	game->player_pos->wall_strip_width = 30;
 	game->player_pos->num_rays = WIDTH / game->player_pos->wall_strip_width;
+	game->mouse->x = 0;
+	game->mouse->y = 0;
 }
 
 t_game	*init_data(t_game *game)
@@ -39,6 +41,9 @@ t_game	*init_data(t_game *game)
 		return (NULL);
 	game->textrs = (t_textrs *)malloc(sizeof(t_textrs));
 	if (!game->textrs)
+		return (NULL);
+	game->mouse = (t_mouse *)malloc(sizeof(t_mouse));
+	if (!game->mouse)
 		return (NULL);
 	game->player_pos->fov_angle = to_radian(60);
 	game->textrs->ea_t = malloc(sizeof(mlx_texture_t));

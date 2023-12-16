@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: omakran <omakran@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:11:09 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/12/16 21:54:40 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/12/16 23:27:14 by omakran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,12 @@
 /*######################################################*/
 /*                    My Structs:						*/
 /*######################################################*/
+
+typedef struct s_mouse
+{
+	int	x;
+	int	y;
+}	t_mouse;
 
 typedef struct int_coordinates
 {
@@ -170,6 +176,7 @@ typedef struct s_game
 	t_ver			*ver;
 	t_textrs		*textrs;
 	mlx_texture_t	*texture[4];
+	t_mouse			*mouse;
 }	t_game;
 
 typedef struct drawit
@@ -227,13 +234,9 @@ int		is_there_a_wall(t_game *game, float x, float y);
 /*						Function Of  Moves:								*/
 /* #####################################################################*/
 
-void	movement(t_game *game, int key);
-void	can_move_to_up(t_game *game, int key);
-void	can_move_to_down(t_game *game, int key);
-void	can_move_to_right(t_game *game, int key);
-void	can_move_to_left(t_game *game, int key);
 void	can_move_a_w(t_game *game);
 void	can_move_s_d(t_game *game);
+void    mouse_tracer(void *param);
 
 /* ##################################################################*/
 /*					     Raycasting:								 */
