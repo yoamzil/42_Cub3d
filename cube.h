@@ -6,7 +6,7 @@
 /*   By: omakran <omakran@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:11:09 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/12/16 23:27:14 by omakran          ###   ########.fr       */
+/*   Updated: 2023/12/16 23:58:53 by omakran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -220,7 +220,6 @@ void	store_ceiling(t_game *game, char **map, int i);
 void	error(void);
 void	start(t_game *game);
 void	draw_square(t_game *game, int x, int y, int __unused color);
-void	erase_drawing(t_game *game);
 void	init_variables(t_game *game);
 void	draw_map(t_game *game);
 void	get_player_position(t_game *game);
