@@ -6,7 +6,7 @@
 /*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 13:02:16 by omakran           #+#    #+#             */
-/*   Updated: 2023/12/04 09:23:07 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/12/16 16:41:00 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,8 @@ void	get_player_position(t_game *game)
 		i = 0;
 		while (game->map[y][i])
 		{
-			if (game->map[y][i] == 'N' || game->map[y][i] == 'S' || game->map[y][i] == 'E' || game->map[y][i] == 'W')
+			if (game->map[y][i] == 'N' || game->map[y][i] == 'S'
+			|| game->map[y][i] == 'E' || game->map[y][i] == 'W')
 			{
 				game->player_pos->y = y * SQUAR_SIZE + SQUAR_SIZE / 2;
 				game->player_pos->x = i * SQUAR_SIZE + SQUAR_SIZE / 2;
@@ -88,22 +89,7 @@ void	get_player_position(t_game *game)
 	}
 }
 
-// void	get_player_position(t_game *game)
-// {
-// 	int		i;
-// 	char	dir;
-
-// 	dir = get_the_direct_of_player(game);
-// 	i = 0;
-// 	while (game->map[i])
-// 	{
-// 		if (!ft_strchr(game->map[i], dir))
-// 		{
-// 			i++;
-// 			continue ;
-// 		}
-// 		break ;
-// 	}
-// 	game->player_pos->y = i * SQUAR_SIZE + SQUAR_SIZE / 2 + 1;
-// 	game->player_pos->x  = (((ft_strchr(game->map[i], dir) - game->map[i]) * SQUAR_SIZE) + SQUAR_SIZE / 2) + 1;
-// }
+float	get_distance(float x_1, float y_1, float x_2, float y_2)
+{
+	return (sqrt(((x_2 - x_1) * (x_2 - x_1)) + ((y_2 - y_1) * (y_2 - y_1))));
+}

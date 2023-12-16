@@ -11,11 +11,13 @@ FRAMEWORKS = MLX42/build/libmlx42.a -Iinclude -lglfw -L $(GLFW)/lib/ -framework 
 OBJS		=	$(SRCS:.c=.o)
 HFS			=	cube.h
 SRCS		=	main.c \
+				file_reading.c \
 				parsing/validMap.c \
 				parsing/validMap_2.c \
 				parsing/store_textures.c \
 				parsing/tools.c \
 				parsing/init.c \
+				parsing/store_textures2.c \
 				raycasting/close_game.c\
 				raycasting/drawing.c\
 				raycasting/create_mlx_window.c\

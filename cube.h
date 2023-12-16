@@ -6,7 +6,7 @@
 /*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:11:09 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/12/11 21:41:41 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/12/16 16:09:23 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ typedef struct two_point_coordinates
 	t_coords	img;
 	t_coords	tex;
 }	t_two_coords;
-
 
 typedef struct s_texters
 {
@@ -173,10 +172,23 @@ typedef struct s_game
 	mlx_texture_t	*texture[4];
 }	t_game;
 
+typedef struct drawit
+{
+	float		top_the_wall_pixel;
+	float		x_intercept;
+	float		start_tmp_y;
+	float		y_tx;
+	float		xoffset;
+	float		yoffset;
+	uint8_t		*pixeli;
+	uint8_t		*pixelx;
+}	t_drawit;
+
 /* ################################################################*/
 /*						Helpers Functions:					       */
 /* ################################################################*/
 
+char	**read_map(char *filepath);
 int		is_valid_map(t_game *game, int i);
 int		is_valid_arg(char *arg);
 int		is_surrounded_by_walls(char **map, int i);
