@@ -6,7 +6,7 @@
 /*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:36:41 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/11/14 18:47:07 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/12/16 18:53:15 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	is_valid_map_chars(char **map, int i)
 		while (map[i][j])
 		{
 			c = map[i][j];
-			if (c != 'N' && c != 'S' && c != 'E' 
+			if (c != 'N' && c != 'S' && c != 'E'
 				&& c != 'W' && c != '0' && c != '1' && c != ' ')
 			{
 				return (0);
