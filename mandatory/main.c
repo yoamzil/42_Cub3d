@@ -6,7 +6,7 @@
 /*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:11:00 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/12/17 13:34:02 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/12/17 14:21:52 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,9 @@ int	main(int ac, char **av)
 		main_helper(game, av, i, row);
 	}
 	else
+	{
 		error();
+		free_the_all_data(game);
+	}
 	return (0);
 }
