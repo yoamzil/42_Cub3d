@@ -6,7 +6,7 @@
 /*   By: omakran <omakran@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 17:53:47 by omakran           #+#    #+#             */
-/*   Updated: 2023/12/16 23:31:37 by omakran          ###   ########.fr       */
+/*   Updated: 2023/12/17 16:46:14 by omakran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ void	start(t_game *game)
 	get_texture(game);
 	raycast(game);
 	mlx_loop_hook(game->win, ft_hook, game);
-	mlx_loop_hook(game->win, mouse_tracer, game);
 	mlx_loop(game->win);
 	mlx_terminate(game->win);
 }
