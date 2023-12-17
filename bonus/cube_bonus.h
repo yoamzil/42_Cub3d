@@ -6,7 +6,7 @@
 /*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:11:09 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/12/17 13:45:51 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/12/17 18:17:40 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -253,7 +253,7 @@ float	get_distance(float x_1, float y_1, float x_2, float y_2);
 void	draw_it(t_game *game, int id);
 void	drawing_the_player(t_game *game);
 void	draw_square_player(t_game *game, int x, int y, int __unused color);
-void	get_texture(t_game *game);
+int		get_texture(t_game *game);
 
 /* ##################################################################*/
 /*					     FREE THE DATA:								 */
