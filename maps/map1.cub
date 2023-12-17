@@ -1,9 +1,9 @@
 NO textures/red_one.png  
-SO textures/red_one.png
-WE textures/red_one.png
-EA textures/red_one.png
+SO textures/three.png
+WE textures/two.png
+EA textures/for.png
 
-C 10,100,9
+P 10,100,9
 
 
 
