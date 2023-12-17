@@ -6,7 +6,7 @@
 /*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 10:42:45 by omakran           #+#    #+#             */
-/*   Updated: 2023/12/16 21:56:52 by yoamzil          ###   ########.fr       */
+/*   Updated: 2023/12/17 14:11:56 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	ft_pixel(int r, int g, int b, int a)
 {
 	return (r << 24 | g << 16 | b << 8 | a);
 }
-
 
 void	drawing_ciel_and_floor(t_game *game)
 {
@@ -39,34 +38,42 @@ void	drawing_ciel_and_floor(t_game *game)
 	}
 }
 
-void	draw_it(t_game *game, float  x_tx, mlx_texture_t  *texture, int  id)
+void	draw_it_helper(t_game *game, t_drawit *drawit, int id)
 {
-	(void)x_tx;
-	(void)texture;
-	float	 start_tmp_y;
-	float  xoffset;
-	float  yoffset;
-	uint8_t* pixeli;
-	uint8_t* pixelx;
+	drawit->pixelx = &game->texture[game->sides]
+		->pixels[(((int)drawit->yoffset 
+				* game->texture[game->sides]->width)
+			+ (int)drawit->xoffset)
+		* game->texture[game->sides]->bytes_per_pixel];
+	drawit->pixeli = &game->mini_map
+		->pixels[(((int)drawit->start_tmp_y
+				* game->mini_map->width)
+			+ id) * game->texture[game->sides]->bytes_per_pixel];
+	if (game->player_pos->ystart < HEIGHT)
+		ft_memmove(drawit->pixeli, drawit->pixelx,
+			game->texture[game->sides]->bytes_per_pixel);
+}
 
-	start_tmp_y = ((HEIGHT / 2) - (game->player_pos->wall_height) / 2);
-	xoffset = (game->texture[game->sides]->width / SQUAR_SIZE * (game->touch - (int)(game->touch / SQUAR_SIZE) * SQUAR_SIZE));
+void	draw_it(t_game *game, int id)
+{
+	t_drawit	*drawit;
+
+	drawit = malloc(sizeof(t_drawit));
+	drawit->start_tmp_y = ((HEIGHT / 2) - (game->player_pos->wall_height) / 2);
+	drawit->xoffset = (game->texture[game->sides]->width / SQUAR_SIZE
+			* (game->touch - (int)(game->touch / SQUAR_SIZE) * SQUAR_SIZE));
 	while (game->player_pos->ystart < game->player_pos->yend)
 	{
-		float wall_height = game->player_pos->wall_height;
-		int offsety = (HEIGHT - wall_height) / 2;
-		yoffset = (game->player_pos->ystart - offsety) * ((float)game->texture[game->sides]->height / wall_height);
-		if(game->player_pos->ystart >= 0 && game->player_pos->ystart <= HEIGHT)
+		drawit->wall_height = game->player_pos->wall_height;
+		drawit->offsety = (HEIGHT - drawit->wall_height) / 2;
+		drawit->yoffset = (game->player_pos->ystart - drawit->offsety)
+			* ((float)game->texture[game->sides]->height / drawit->wall_height);
+		if (game->player_pos->ystart >= 0 && game->player_pos->ystart <= HEIGHT)
 		{
-			pixelx = &game->texture[game->sides]->pixels[(((int)yoffset * game->texture[game->sides]->width)
-					+ (int)xoffset) * game->texture[game->sides]->bytes_per_pixel];
-			pixeli = &game->mini_map->pixels[(((int)start_tmp_y * game->mini_map->width)
-					+ id) * game->texture[game->sides]->bytes_per_pixel];
-			if (game->player_pos->ystart < HEIGHT)
-				ft_memmove(pixeli, pixelx, game->texture[game->sides]->bytes_per_pixel);
+			draw_it_helper(game, drawit, id);
 		}
 		game->player_pos->ystart++;
-		start_tmp_y++; 
+		drawit->start_tmp_y++; 
 	}
 }
 

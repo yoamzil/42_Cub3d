@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   close_game.c                                       :+:      :+:    :+:   */
+/*   the_moves_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omakran <omakran@student.1337.ma >         +#+  +:+       +#+        */
+/*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/13 17:58:00 by omakran           #+#    #+#             */
-/*   Updated: 2023/11/13 21:04:08 by omakran          ###   ########.fr       */
+/*   Created: 2023/11/18 19:25:03 by omakran           #+#    #+#             */
+/*   Updated: 2023/12/17 13:47:36 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cube.h"
+#include "../cube_bonus.h"
 
-int	close_game(void *param)
+int	is_within_window(int x, int y)
 {
-	param = NULL;
-	exit(0);
-	return (0);
+	return (x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT);
 }

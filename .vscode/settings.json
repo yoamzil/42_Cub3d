@@ -9,6 +9,7 @@
 		"vector": "c",
 		"__node_handle": "c",
 		"__locale": "c",
-		"locale": "c"
+		"locale": "c",
+		"cube_bonus.h": "c"
 	}
 }

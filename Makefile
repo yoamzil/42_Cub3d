@@ -1,7 +1,7 @@
 NAME		=	cub3D
 
 CC			=	cc
-CFLAGS		=	-g -Wall -Werror -Wextra -ffast-math -O3 
+CFLAGS		=	-g -Wall -Werror -Wextra -ffast-math -O3 #-fsanitize=address 
  
 GLFW		=	$(shell brew --prefix glfw)
 
@@ -9,28 +9,29 @@ FRAMEWORKS = MLX42/build/libmlx42.a -Iinclude -lglfw -L $(GLFW)/lib/ -framework 
 
 
 OBJS		=	$(SRCS:.c=.o)
-HFS			=	cube.h
-SRCS		=	main.c \
-				file_reading.c \
-				parsing/validMap.c \
-				parsing/validMap_2.c \
-				parsing/store_textures.c \
-				parsing/tools.c \
-				parsing/init.c \
-				parsing/store_textures2.c \
-				raycasting/close_game.c\
-				raycasting/drawing.c\
-				raycasting/create_mlx_window.c\
-				raycasting/draw_map.c \
-				raycasting/move_the_player.c \
-				raycasting/the_moves.c \
-				raycasting/player_calculation.c\
-				raycasting/can_move_to.c\
-				raycasting/raycast.c\
-				raycasting/herozontal.c\
-				raycasting/vertical.c\
-				raycasting/mouse_tracing.c\
-				free_the_all_data.c\
+HFS			=	mandatory/cube.h
+SRCS		=	mandatory/main.c \
+				mandatory/file_reading.c \
+				mandatory/parsing/validMap.c \
+				mandatory/parsing/validMap_2.c \
+				mandatory/parsing/store_textures.c \
+				mandatory/parsing/tools.c \
+				mandatory/parsing/init.c \
+				mandatory/parsing/store_textures2.c \
+				mandatory/raycasting/close_game.c\
+				mandatory/raycasting/drawing.c\
+				mandatory/raycasting/create_mlx_window.c\
+				mandatory/raycasting/draw_map.c \
+				mandatory/raycasting/move_the_player.c \
+				mandatory/raycasting/the_moves.c \
+				mandatory/raycasting/player_calculation.c\
+				mandatory/raycasting/can_move_to.c\
+				mandatory/raycasting/raycast.c\
+				mandatory/raycasting/herozontal.c\
+				mandatory/raycasting/vertical.c\
+				mandatory/raycasting/mouse_tracing.c\
+				mandatory/free_the_all_data.c\
+				mandatory/allocation.c \
 				get_next_line/get_next_line.c \
 				get_next_line/get_next_line_utils.c \
 				libft/ft_atoi.c \

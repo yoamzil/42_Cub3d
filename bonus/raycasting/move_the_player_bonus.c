@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   move_the_player.c                                  :+:      :+:    :+:   */
+/*   move_the_player_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omakran <omakran@student.1337.ma >         +#+  +:+       +#+        */
+/*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 16:21:01 by omakran           #+#    #+#             */
-/*   Updated: 2023/12/06 22:13:51 by omakran          ###   ########.fr       */
+/*   Updated: 2023/12/17 13:47:30 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cube.h"
+#include "../cube_bonus.h"
 
 float	normalize_angle(float angle)
 {
@@ -39,14 +39,14 @@ void	ft_hook(void *param)
 	game = (t_game *)param;
 	if (mlx_is_key_down(game->win, MLX_KEY_ESCAPE))
 		mlx_close_window(game->win);
-	if (mlx_is_key_down(game->win, MLX_KEY_W) || mlx_is_key_down(game->win, MLX_KEY_A))
+	if (mlx_is_key_down(game->win, MLX_KEY_W)
+		|| mlx_is_key_down(game->win, MLX_KEY_A))
 		can_move_a_w(game);
-	if (mlx_is_key_down(game->win, MLX_KEY_S) || mlx_is_key_down(game->win, MLX_KEY_D))
+	if (mlx_is_key_down(game->win, MLX_KEY_S)
+		|| mlx_is_key_down(game->win, MLX_KEY_D))
 		can_move_s_d(game);
 	else
 		ft_rotate_player(game);
 	drawing_ciel_and_floor(game);
 	raycast(game);
-	// draw_map(game);
-	// drawing_the_player(game);
 }

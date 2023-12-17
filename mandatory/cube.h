@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omakran <omakran@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:11:09 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/12/16 23:58:53 by omakran          ###   ########.fr       */
+/*   Updated: 2023/12/17 13:34:25 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUBE_H
 # define CUBE_H
 
-# include "MLX42/include/MLX42/MLX42.h"
-# include "get_next_line/get_next_line.h"
-# include "libft/libft.h"
+# include "../MLX42/include/MLX42/MLX42.h"
+# include "../get_next_line/get_next_line.h"
+# include "../libft/libft.h"
 # include <limits.h>
 # include <math.h>
 # include <stdio.h>
@@ -181,12 +181,11 @@ typedef struct s_game
 
 typedef struct drawit
 {
-	float		top_the_wall_pixel;
-	float		x_intercept;
 	float		start_tmp_y;
-	float		y_tx;
 	float		xoffset;
 	float		yoffset;
+	float		wall_height;
+	int			offsety;
 	uint8_t		*pixeli;
 	uint8_t		*pixelx;
 }	t_drawit;
@@ -228,6 +227,7 @@ void	set_up(t_game *game);
 float	to_radian(float nb);
 void	direction_of_player(t_game *game);
 int		is_there_a_wall(t_game *game, float x, float y);
+t_game	*init_data(t_game *game);
 
 /* #####################################################################*/
 /*						Function Of  Moves:								*/
@@ -235,7 +235,7 @@ int		is_there_a_wall(t_game *game, float x, float y);
 
 void	can_move_a_w(t_game *game);
 void	can_move_s_d(t_game *game);
-void    mouse_tracer(void *param);
+void	mouse_tracer(void *param);
 
 /* ##################################################################*/
 /*					     Raycasting:								 */
@@ -250,7 +250,7 @@ t_game	*get_wall_height(t_game *game);
 t_game	*the_closest_point(t_game *game);
 t_game	*valid_distance(t_game *game, float ray_angle);
 float	get_distance(float x_1, float y_1, float x_2, float y_2);
-void	draw_it(t_game *game, float x_tx, mlx_texture_t *texture, int id);
+void	draw_it(t_game *game, int id);
 void	drawing_the_player(t_game *game);
 void	draw_square_player(t_game *game, int x, int y, int __unused color);
 void	get_texture(t_game *game);

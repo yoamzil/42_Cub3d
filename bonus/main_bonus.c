@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omakran <omakran@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yoamzil <yoamzil@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:11:00 by yoamzil           #+#    #+#             */
-/*   Updated: 2023/12/16 23:31:05 by omakran          ###   ########.fr       */
+/*   Updated: 2023/12/17 13:47:56 by yoamzil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube.h"
+#include "cube_bonus.h"
 
 void	set_up(t_game *game)
 {
@@ -20,37 +20,6 @@ void	set_up(t_game *game)
 	game->player_pos->num_rays = WIDTH / game->player_pos->wall_strip_width;
 	game->mouse->x = 0;
 	game->mouse->y = 0;
-}
-
-t_game	*init_data(t_game *game)
-{
-	game = (t_game *)malloc(sizeof(t_game));
-	if (!game)
-		return (NULL);
-	game->player_pos = (t_player_x_y *)malloc(sizeof(t_player_x_y));
-	if (!game->player_pos)
-		return (NULL);
-	game->hori = (t_hori *)malloc(sizeof(t_hori));
-	if (!game->hori)
-		return (NULL);
-	game->cast = (t_ray_cast *)malloc(sizeof(t_ray_cast));
-	if (!game->cast)
-		return (NULL);
-	game->ver = (t_ver *)malloc(sizeof(t_ver));
-	if (!game->ver)
-		return (NULL);
-	game->textrs = (t_textrs *)malloc(sizeof(t_textrs));
-	if (!game->textrs)
-		return (NULL);
-	game->mouse = (t_mouse *)malloc(sizeof(t_mouse));
-	if (!game->mouse)
-		return (NULL);
-	game->player_pos->fov_angle = to_radian(60);
-	game->textrs->ea_t = malloc(sizeof(mlx_texture_t));
-	game->textrs->no_t = malloc(sizeof(mlx_texture_t));
-	game->textrs->so_t = malloc(sizeof(mlx_texture_t));
-	game->textrs->we_t = malloc(sizeof(mlx_texture_t));
-	return (game);
 }
 
 void	main_helper(t_game *game, char **av, int i, int row)
