@@ -46,7 +46,7 @@ The game supports various events and functionalities, including:
 - [Project Subject][2]
 
 [1]: https://www.youtube.com/watch?v=7P_dic-pSKo&ab_channel=3DRealms
-[2]: https://github.com/lucaslefrancq/42_cub3D/blob/master/cub3D.en.subject.pdf
+[2]: https://github.com/yoamzil/42_Cub3d/blob/master/en.subject.pdf
 [3]: https://permadi.com/1996/05/ray-casting-tutorial-table-of-contents/
 
 
