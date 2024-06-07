@@ -1,7 +1,8 @@
+MLX42/* linguist-vendored
 *.c linguist-language=C
 *.h linguist-language=C
-*.cpp linguist-language=C++
 Makefile linguist-language=Makefile
+*.cpp linguist-language=C++
 CMakeLists.txt linguist-language=CMake
 *.py linguist-language=Python
 *.glsl linguist-language=GLSL
